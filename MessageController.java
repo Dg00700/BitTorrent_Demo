@@ -10,11 +10,11 @@ public class MessageController {
 	}
 
 	public synchronized int processLength(byte[] messageLength) {
-		if(messageLength!=null) {
-			return ByteBuffer.wrap(messageLength).getInt();
+		if(messageLength==null) {
+			return 0;
 		}
 		else{
-			return 0;
+			return ByteBuffer.wrap(messageLength).getInt();
 		}
 	}
 
@@ -38,7 +38,7 @@ public class MessageController {
 		case HAVE:
 			return 5;
 		case BITFIELD:
-			BitField bitfield = BitField.getInstance();
+			MessageModel bitfield = MessageModel.getInstance();
 			return bitfield.getMessageLength();
 		case PIECE:
 			System.out.println("Shared file" + dataController.getFileChunkByIndex(pieceIndex) + " asking for piece " + pieceIndex);
@@ -61,37 +61,38 @@ public class MessageController {
 
 	public synchronized byte[] getMessagePayload(MessageModel.Type messageType, int pieceIndex) {
 		byte[] respMessage = new byte[5];
-
-		switch (messageType) {
-		case CHOKE:
+		if(messageType==MessageModel.Type.CHOKE){
 			return new byte[] { 0 };
-		case UNCHOKE:
+		}
+		if(messageType==MessageModel.Type.UNCHOKE){
 			return new byte[] { 1 };
-		case INTERESTED:
+		}
+		if(messageType==MessageModel.Type.INTERESTED){
 			return new byte[] { 2 };
-		case NOTINTERESTED:
+		}
+		if(messageType==MessageModel.Type.NOTINTERESTED){
 			return new byte[] { 3 };
-		case HAVE:
+		}
+		if(messageType==MessageModel.Type.HAVE){
 			respMessage[0] = 4;
 			byte[] havePieceIndex = ByteBuffer.allocate(4).putInt(pieceIndex).array();
 			System.arraycopy(havePieceIndex, 0, respMessage, 1, 4);
-			break;
-		case BITFIELD:
-			BitField bitfield = BitField.getInstance();
+
+		}
+		else if(messageType==MessageModel.Type.BITFIELD){
+			MessageModel bitfield = MessageModel.getInstance();
 			respMessage = bitfield.getMessageData();
-			break;
-		case REQUEST:
+		}
+		else if(messageType==MessageModel.Type.REQUEST){
 			respMessage[0] = 6;
 			byte[] index = ByteBuffer.allocate(4).putInt(pieceIndex).array();
 			System.arraycopy(index, 0, respMessage, 1, 4);
-			break;
-		case PIECE:
+		}
+		else if(messageType==MessageModel.Type.PIECE){
 			respMessage = processPiece(pieceIndex);
-			break;
-		case HANDSHAKE:
+		}
+		if(messageType==MessageModel.Type.HANDSHAKE){
 			return MessageModel.getMessage();
-		default:
-				break;
 		}
 		return respMessage;
 	}
@@ -112,6 +113,7 @@ public class MessageController {
 	public synchronized MessageModel.Type getType(byte type) {
 
 		MessageModel.Type resp = null;
+
 		switch (type) {
 			case 0:
 				resp = MessageModel.Type.CHOKE;

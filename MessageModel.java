@@ -1,22 +1,61 @@
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.BitSet;
 
-public abstract class MessageModel {
+public class MessageModel {
 
 	protected ByteBuffer bytebuffer;
 	protected byte type;
 	protected byte[] content;
 	protected byte[] messageLength = new byte[4];
 	protected byte[] message;
+	private FileHandler fileHandler;
+	private static MessageModel bitfield;
+
 
 	public static enum Type {
 		CHOKE, UNCHOKE, INTERESTED, NOTINTERESTED, HAVE, BITFIELD, REQUEST, PIECE, HANDSHAKE;
 	}
 
-	abstract protected int getMessageLength();
+	private MessageModel(){
+		init();
+	}
 
-	abstract protected byte[] getMessageData();
+	private void init() {
+		type = 5;
+		message = new byte[CommonProperties.numberOfChunks + 1];
+		content = new byte[CommonProperties.numberOfChunks];
+		fileHandler = FileHandler.getInstance();
+		message[0] = type;
+		BitSet filePieces = fileHandler.getFilePieces();
+		int i=0;
+		while (i < CommonProperties.numberOfChunks) {
+			if (filePieces.get(i)) {
+				message[i + 1] = 1;
+			}
+			i++;
+		}
+	}
+
+	public static MessageModel getInstance() {
+		synchronized (MessageModel.class) {
+			if (bitfield == null) {
+				bitfield = new MessageModel();
+			}
+		}
+		return bitfield;
+	}
+
+	
+	protected synchronized int getMessageLength() {
+		init();
+		return message.length;
+	}
+
+	protected synchronized byte[] getMessageData() {
+		return message;
+	}
 	private static final String HANDSHAKE_HEADER = "P2PFILESHARINGPROJ0000000000";
 	private static String handshakeMessage = "";
 
