@@ -52,6 +52,7 @@ public class Node {
 	public void startOutGoingConnections() {
 		HashMap<String, NetworkModel> map = CommonProperties.getPeerList();
 		int myNumber = networkModel.networkId;
+		System.out.println("HIIIII"+myNumber);
 		for (String peerId : map.keySet()) {
 			NetworkModel peerInfo = map.get(peerId);
 			if (peerInfo.networkId < myNumber) {
