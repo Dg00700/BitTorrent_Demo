@@ -81,19 +81,28 @@ class CommonProperties {
 
 
 	public static void calculateNumberOfPieces() {
-		numberOfChunks = (int) (fileSize % pieceSize) == 0 ? (int) (fileSize / pieceSize)
-				: (int) (fileSize / pieceSize) + 1;
-		System.out.println("CommonProperties.calculateNumberOfPieces - Number of pieces: " + numberOfChunks);
+		// numberOfChunks = (int) (fileSize % pieceSize) == 0 ? (int) (fileSize / pieceSize)
+		// 		: (int) (fileSize / pieceSize) + 1;
+		// System.out.println("CommonProperties.calculateNumberOfPieces - Number of pieces: " + numberOfChunks);
+
+		int val = (int) (fileSize % pieceSize);
+		if(val == 0){
+			numberOfChunks = (int) (fileSize / pieceSize);
+		}
+		else{
+			numberOfChunks = (int) (fileSize / pieceSize) + 1;
+		}
 	}
 
 	public static void readPeerInfo() {
-		int id = 1;
+		int num = 1;
 		try {
 			Scanner sc = new Scanner(new File(CommonProperties.PEER_PROPERTIES_CONFIG_PATH));
 			while (sc.hasNextLine()) {
 				String str[] = sc.nextLine().split(" ");
 				NetworkModel network = new NetworkModel();
-				network.networkId = id++;
+				network.networkId = num;
+				num += 1;
 				network.peerId= str[0];
 				network.hostName = str[1];
 				network.port = Integer.parseInt(str[2]);
