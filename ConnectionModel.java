@@ -35,7 +35,14 @@ public class ConnectionModel {
 		dataController = new DataController(this);
 		server = new Server(peerSocket, dataController);
 		client = new Client(peerSocket, dataController);
-		bootStrapNode(server, client);
+		Thread serverThread = new Thread(server);
+		Thread clientThread = new Thread(client);
+		serverThread.start();
+		clientThread.start();
+		setup(server);
+	}
+
+	private void setup(Server server){
 		dataController.setUpload(server);
 		dataController.start();
 	}
@@ -45,20 +52,15 @@ public class ConnectionModel {
 		dataController = new DataController(this);
 		server = new Server(peerSocket, peerId, dataController);
 		client = new Client(peerSocket,  dataController);
-		bootStrapNode(server, client);
+		Thread serverThread = new Thread(server);
+		Thread clientThread = new Thread(client);
+		serverThread.start();
+		clientThread.start();
         LoggerHandler.getInstance().logTcpConnectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
 		dataController.sendHandshake();
 		dataController.setUpload(server);
 		dataController.start();
 	}
-
-	public void bootStrapNode(Server server, Client client) {
-		Thread serverThread = new Thread(server);
-		Thread clientThread = new Thread(client);
-		serverThread.start();
-		clientThread.start();
-	}
-
 	public synchronized void sendMessage(int messageLength, byte[] payload) {
 		server.addMessage(messageLength, payload);
 	}
