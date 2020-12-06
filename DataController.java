@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.concurrent.*;
 
+//import MessageModel.Type;
+
 public class DataController extends Thread {
 	private volatile boolean bitfieldSent;
 	private BitSet peerBitset;
@@ -120,31 +122,33 @@ public class DataController extends Thread {
 		MessageModel.Type responseMessageType = null;
 		int fileChunkIndex = Integer.MIN_VALUE;
 		System.out.println("Received message: " + messageType);
-		switch (messageType) {
-				case CHOKE:	responseMessageType = processChoke();
-				break;
-			case UNCHOKE:
-				LoggerHandler.getInstance().logUnchokNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
-				responseMessageType = MessageModel.Type.REQUEST;
-				fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
-				break;
-			case INTERESTED: responseMessageType = processInterested();
-				break;
-			case NOTINTERESTED: responseMessageType = processNotInterested();
-				break;
-			case HAVE:
-				fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
+		if(messageType==MessageModel.Type.CHOKE){
+			responseMessageType=processChoke();
+		}
+		else if(messageType==MessageModel.Type.UNCHOKE){
+			LoggerHandler.getInstance().logUnchokNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
+			responseMessageType = MessageModel.Type.REQUEST;
+			fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
+		}
+		else if(messageType==MessageModel.Type.INTERESTED){
+			responseMessageType = processInterested();
+		}
+		else if(messageType==MessageModel.Type.NOTINTERESTED){
+			responseMessageType = processNotInterested();
+		}
+		else if(messageType==MessageModel.Type.HAVE){
+			fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
 				LoggerHandler.getInstance().logReceivedHaveMessage(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
 						fileChunkIndex);
 				updatePeerBitset(fileChunkIndex);
 				responseMessageType = getInterestedNotInterested();
-				break;
-			case BITFIELD:
-				setPeerBitset(message);
+		}
+		else if(messageType==MessageModel.Type.BITFIELD){
+			setPeerBitset(message);
 				responseMessageType = getInterestedNotInterested();
-				break;
-			case REQUEST:
-				responseMessageType = MessageModel.Type.PIECE;
+		}
+		else if(messageType==MessageModel.Type.REQUEST){
+			responseMessageType = MessageModel.Type.PIECE;
 				byte[] content = new byte[4];
 				System.arraycopy(message, 1, content, 0, 4);
 				fileChunkIndex = ByteBuffer.wrap(content).getInt();
@@ -152,13 +156,13 @@ public class DataController extends Thread {
 					System.out.println("received file");
 					responseMessageType = null;
 				}
-				break;
-			case PIECE:	processPiece(fileChunkIndex,message,responseMessageType,messageType);
-				break;
-			case HANDSHAKE: processHandshake(message,responseMessageType,fileChunkIndex);
-				break;
 		}
-
+		else if(messageType==MessageModel.Type.PIECE){
+			processPiece(fileChunkIndex,message,responseMessageType,messageType);
+		}
+		else if(messageType==MessageModel.Type.HANDSHAKE){
+			processHandshake(message,responseMessageType,fileChunkIndex);
+		}
 		if (null != responseMessageType) {
 			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}

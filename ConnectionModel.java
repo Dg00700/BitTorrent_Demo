@@ -47,10 +47,6 @@ public class ConnectionModel {
 		client = new Client(peerSocket,  dataController);
 		bootStrapNode(server, client);
         LoggerHandler.getInstance().logTcpConnectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
-		bootStrapDataController();
-	}
-
-	private void bootStrapDataController(){
 		dataController.sendHandshake();
 		dataController.setUpload(server);
 		dataController.start();
