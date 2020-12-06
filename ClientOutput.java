@@ -15,8 +15,7 @@ public class ClientOutput implements Runnable {
 	private boolean isConnectionActive;
 
 	// client thread initialization
-	public ClientOutput(Socket clientSocket, String id, DataController data) {
-		DataController currentController = data;
+	public ClientOutput(Socket clientSocket, String id, PeerProcess data) {
 		if(data!=null){
 			//needed to update the controller.
 		}
@@ -35,9 +34,9 @@ public class ClientOutput implements Runnable {
 	}
 
 	// server thread initialization
-	public ClientOutput(Socket clientSocket, DataController data) {
+	public ClientOutput(Socket clientSocket, PeerProcess data) {
 
-		DataController currentController = data;
+		PeerProcess currentController = data;
 		if(data!=null){
 			//needed to update the controller.
 		}
@@ -55,8 +54,8 @@ public class ClientOutput implements Runnable {
 		}
 	}
 
-	private void init(Socket clientSocket, DataController data) {
-		DataController currentController = data;
+	private void init(Socket clientSocket, PeerProcess data) {
+		PeerProcess currentController = data;
 		if(data!=null){
 			//needed to update the controller.
 		}
@@ -118,12 +117,12 @@ public class ClientOutput implements Runnable {
 class Client implements Runnable {
 	private boolean isDownloadActive;
 	private DataInputStream inputDataStream;
-	private DataController sharedData;
+	private PeerProcess sharedData;
 	private Socket currentSocket;
 
 
 
-	public Client(Socket socket, DataController data) {
+	public Client(Socket socket, PeerProcess data) {
 		this.currentSocket = socket;
 		sharedData = data;
 		isDownloadActive = true;

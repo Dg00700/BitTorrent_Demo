@@ -136,7 +136,7 @@ class ConnectionModel {
 	private ConnectionController connectionController = ConnectionController.getInstance();
 	ClientOutput clientOutput;
 	Client client;
-	DataController dataController;
+	PeerProcess peerProcess;
 	double bytesDownloaded;
 	Socket peerSocket;
 	String remotePeerId;
@@ -161,9 +161,9 @@ class ConnectionModel {
 
 	public ConnectionModel(Socket peerSocket) {
 		this.peerSocket = peerSocket;
-		dataController = new DataController(this);
-		clientOutput = new ClientOutput(peerSocket, dataController);
-		client = new Client(peerSocket, dataController);
+		peerProcess = new PeerProcess(this);
+		clientOutput = new ClientOutput(peerSocket, peerProcess);
+		client = new Client(peerSocket, peerProcess);
 		Thread serverThread = new Thread(clientOutput);
 		Thread clientThread = new Thread(client);
 		serverThread.start();
@@ -172,23 +172,23 @@ class ConnectionModel {
 	}
 
 	private void setup(ClientOutput clientOutput){
-		dataController.setUpload(clientOutput);
-		dataController.start();
+		peerProcess.setUpload(clientOutput);
+		peerProcess.start();
 	}
 
 	public ConnectionModel(Socket peerSocket, String peerId) {
 		this.peerSocket = peerSocket;
-		dataController = new DataController(this);
-		clientOutput = new ClientOutput(peerSocket, peerId, dataController);
-		client = new Client(peerSocket,  dataController);
+		peerProcess = new PeerProcess(this);
+		clientOutput = new ClientOutput(peerSocket, peerId, peerProcess);
+		client = new Client(peerSocket,  peerProcess);
 		Thread serverThread = new Thread(clientOutput);
 		Thread clientThread = new Thread(client);
 		serverThread.start();
 		clientThread.start();
         LoggerHandler.getInstance().logTcpConnectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
-		dataController.sendHandshake();
-		dataController.setUpload(clientOutput);
-		dataController.start();
+		peerProcess.sendHandshake();
+		peerProcess.setUpload(clientOutput);
+		peerProcess.start();
 	}
 	public synchronized void sendMessage(int messageLength, byte[] payload) {
 		clientOutput.addMessage(messageLength, payload);
@@ -236,11 +236,11 @@ class ConnectionModel {
 	}
 
 	public synchronized BitSet getPeerBitSet() {
-		return dataController.getPeerBitSet();
+		return peerProcess.getPeerBitSet();
 	}
 
 	public synchronized boolean hasFile() {
-		return dataController.hasFile();
+		return peerProcess.hasFile();
 	}
 
 	public synchronized void registerConnection() {
@@ -253,143 +253,11 @@ class ConnectionModel {
 		else
 			return false;
 	}
-	public boolean ValidateDtaInstanceForNull(DataController dataController){
-		if(dataController == null)
+	public boolean ValidateDtaInstanceForNull(PeerProcess peerProcess){
+		if(peerProcess == null)
 			return true;
 		else
 			return false;
 	}
 
 }
-// class ConnectionModel {
-
-// 	private ConnectionController connectionController = ConnectionController.getInstance();
-// 	ClientOutput clientOutput;
-// 	Client client;
-// 	DataController dataController;
-// 	double bytesDownloaded;
-// 	Socket peerSocket;
-// 	String remotePeerId;
-// 	boolean isConnectionChoked;
-
-
-// 	public double getBytesDownloaded() {
-// 		return bytesDownloaded;
-// 	}
-
-// 	protected ClientOutput getServerInstance() {
-// 		return clientOutput;
-// 	}
-
-// 	public synchronized void incrementTotalBytesDownloaded(long value) {
-// 		bytesDownloaded += value;
-// 	}
-
-// 	public synchronized boolean isConnectionChoked() {
-// 		return isConnectionChoked;
-// 	}
-
-// 	public ConnectionModel(Socket peerSocket) {
-// 		this.peerSocket = peerSocket;
-// 		dataController = new DataController(this);
-// 		clientOutput = new ClientOutput(peerSocket, dataController);
-// 		client = new Client(peerSocket, dataController);
-// 		bootStrapNode(clientOutput, client);
-// 		dataController.setUpload(clientOutput);
-// 		dataController.start();
-// 	}
-
-// 	public ConnectionModel(Socket peerSocket, String peerId) {
-// 		this.peerSocket = peerSocket;
-// 		dataController = new DataController(this);
-// 		clientOutput = new ClientOutput(peerSocket, peerId, dataController);
-// 		client = new Client(peerSocket,  dataController);
-// 		bootStrapNode(clientOutput, client);
-//         LoggerHandler.getInstance().logTcpConnectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
-// 		bootStrapDataController();
-// 	}
-
-// 	private void bootStrapDataController(){
-// 		dataController.sendHandshake();
-// 		dataController.setUpload(clientOutput);
-// 		dataController.start();
-// 	}
-
-// 	public void bootStrapNode(ClientOutput clientOutput, Client client) {
-// 		Thread serverThread = new Thread(clientOutput);
-// 		Thread clientThread = new Thread(client);
-// 		serverThread.start();
-// 		clientThread.start();
-// 	}
-
-// 	public synchronized void sendMessage(int messageLength, byte[] payload) {
-// 		clientOutput.addMessage(messageLength, payload);
-// 	}
-
-// 	public void close() {
-// 		try {
-// 			peerSocket.close();
-// 		} catch (IOException e) {
-// 			// TODO Auto-generated catch block
-// 			e.printStackTrace();
-// 		}
-// 	}
-
-// 	public synchronized String getRemotePeerId() {
-// 		return remotePeerId;
-// 	}
-
-// 	public synchronized void broadCastHavetoAllRegisteredPeers(int fileChunkIndex) {
-// 		connectionController.broadCastHavetoAllRegisteredPeers(fileChunkIndex);
-// 	}
-
-// 	protected synchronized void addRequestedPiece(int pieceIndex) {
-// 		FileHandler.getInstance().addRequestedPiece(this, pieceIndex);
-// 	}
-
-// 	public synchronized void processAcceptedPeerConnections() {
-// 		connectionController.processAcceptedPeerConnections(this,remotePeerId);
-// 	}
-
-// 	public synchronized void processRejectedPeerConnections() {
-// 		connectionController.processRejectedPeerConnections(remotePeerId, this);
-// 	}
-
-// 	public synchronized void setDownloadedbytes(int bDownloaded) {
-// 		bytesDownloaded = bDownloaded;
-// 	}
-
-// 	public void setPeerId(String value) {
-// 		remotePeerId = value;
-// 	}
-
-// 	public synchronized void removeRequestedPiece() {
-// 		FileHandler.getInstance().removeRequestedPiece(this);
-// 	}
-
-// 	public synchronized BitSet getPeerBitSet() {
-// 		return dataController.getPeerBitSet();
-// 	}
-
-// 	public synchronized boolean hasFile() {
-// 		return dataController.hasFile();
-// 	}
-
-// 	public synchronized void registerConnection() {
-// 		connectionController.registerConnection(this);
-// 	}
-
-// 	public boolean ValidateConnectionForNull(ConnectionModel connection){
-// 		if(connection == null)
-// 			return true;
-// 		else
-// 			return false;
-// 	}
-// 	public boolean ValidateDtaInstanceForNull(DataController dataController){
-// 		if(dataController == null)
-// 			return true;
-// 		else
-// 			return false;
-// 	}
-
-// }
