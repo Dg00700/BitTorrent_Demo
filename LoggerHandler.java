@@ -110,6 +110,14 @@ public class LoggerHandler {
 
 	public void logDownloadComplete(String timestamp, String peerId) {
 		writeToFile(timestamp + "Peer " + peerId + " has downloaded the complete file.");
+		if(peerId==CommonProperties.last_peer)
+		{
+			Node.didEveryoneReceiveTheFile=true;
+			Node node1=new Node();
+			node1.checkIfAllpeerRecievedFile();
+
+
+		}
 	}
 
 

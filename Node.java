@@ -8,7 +8,7 @@ public class Node {
 	private NetworkModel networkModel;
 	ConnectionController connectionController;
 
-	private Node() {
+	public Node() {
 		networkModel = CommonProperties.getPeer(BitTorrentMainController.peerId);
 		connectionController = ConnectionController.getInstance();
 	}
@@ -52,6 +52,7 @@ public class Node {
 	public void startOutGoingConnections() {
 		HashMap<String, NetworkModel> map = CommonProperties.getPeerList();
 		int myNumber = networkModel.networkId;
+		System.out.println("HIIIII"+myNumber);
 		for (String peerId : map.keySet()) {
 			NetworkModel peerInfo = map.get(peerId);
 			if (peerInfo.networkId < myNumber) {
@@ -67,7 +68,7 @@ public class Node {
 		}
 	}
 
-	private void checkIfAllpeerRecievedFile(){
+	public void checkIfAllpeerRecievedFile(){
 		if(didEveryoneReceiveTheFile){
 			if(current!=null){
 				CommonProperties.DisplayMessageForUser(null, "all peers Have recieved file.");
