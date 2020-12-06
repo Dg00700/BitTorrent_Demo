@@ -64,8 +64,8 @@ public class FileHandler extends Thread {
 	private void readFileInChunks(int numberOfChunks,int fileSize, DataInputStream dataInputStream) throws IOException{
 		int chunkIndex = 0;
 		for (int i = 0; i < CommonProperties.numberOfChunks; i++) {
-			int chunkSize = i != numberOfChunks - 1 ? CommonProperties.chunkSize
-					: fileSize % CommonProperties.chunkSize;
+			int chunkSize = i != numberOfChunks - 1 ? CommonProperties.pieceSize
+					: fileSize % CommonProperties.pieceSize;
 			byte[] piece = new byte[chunkSize];
 			dataInputStream.readFully(piece);
 			file.put(chunkIndex, piece);
