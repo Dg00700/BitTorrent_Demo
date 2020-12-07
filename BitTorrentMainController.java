@@ -9,7 +9,6 @@ import java.util.*;
 import java.io.*;
 
 
-
 public class BitTorrentMainController {
 	public static String peerId;
 
@@ -143,19 +142,19 @@ class CommonProperties {
 
 	}
 
-	public static void DisplayMessageForUser(Object instance, String message){
-		try {
-			String sender = "";
-			if (instance != null)
-				sender = instance.toString();
-			else
-				sender = "Unknown";
-			System.out.println("Sender " + sender + " Message : " + message);
-		}
-		catch (Exception ex){
-			System.out.println(message);
-		}
-	}
+	// public static void DisplayMessageForUser(Object instance, String message){
+	// 	try {
+	// 		String sender = "";
+	// 		if (instance != null)
+	// 			sender = instance.toString();
+	// 		else
+	// 			sender = "Unknown";
+	// 		System.out.println("Sender " + sender + " Message : " + message);
+	// 	}
+	// 	catch (Exception ex){
+	// 		System.out.println(message);
+	// 	}
+	// }
 
 	public static void PrintConfigDetails() {
 		System.out.println( "PeerProperties");

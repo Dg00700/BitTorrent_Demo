@@ -68,7 +68,13 @@ public class Node {
 		}
 	}
 
-	
+	public void checkIfAllpeerRecievedFile(){
+		if(didEveryoneReceiveTheFile){
+			if(current!=null){
+				//CommonProperties.DisplayMessageForUser(null, "all peers Have recieved file.");
+			}
+		}
+	}
 
 	private void createConnection(NetworkModel peerInfo) {
 		int peerPort = peerInfo.port;
@@ -82,13 +88,7 @@ public class Node {
 		}
 	}
 
-	public void checkIfAllpeerRecievedFile(){
-		if(didEveryoneReceiveTheFile){
-			if(current!=null){
-				CommonProperties.DisplayMessageForUser(null, "all peers Have recieved file.");
-			}
-		}
-	}
+
 
 	public void close(){
 		try{

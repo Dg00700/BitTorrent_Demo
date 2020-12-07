@@ -81,19 +81,19 @@ public class FileHandler extends Thread {
 			fileInputStream = new FileInputStream(filePtr);
 			dataInputStream = new DataInputStream(fileInputStream);
 			try {
-				CommonProperties.DisplayMessageForUser(this,"Started Splitting the file");
+				//CommonProperties.DisplayMessageForUser(this,"Started Splitting the file");
 				readFileInChunks(CommonProperties.numberOfChunks,
 								(int) CommonProperties.fileSize,
 								dataInputStream);
 			}
 			catch (IOException fileReadError) {
 				fileReadError.printStackTrace();
-				CommonProperties.DisplayMessageForUser(this,"Error while splitting file");
+				//CommonProperties.DisplayMessageForUser(this,"Error while splitting file");
 			}
 
 		}
 		catch (FileNotFoundException e) {
-			CommonProperties.DisplayMessageForUser(this,"Error reading common.cfg file");
+			//CommonProperties.DisplayMessageForUser(this,"Error reading common.cfg file");
 			e.printStackTrace();
 		}
 		finally {
@@ -102,7 +102,7 @@ public class FileHandler extends Thread {
 				dataInputStream.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				CommonProperties.DisplayMessageForUser(this,"Error while closing fileinputstream after reading file");
+				//CommonProperties.DisplayMessageForUser(this,"Error while closing fileinputstream after reading file");
 			}
 		}
 	}
@@ -117,7 +117,7 @@ public class FileHandler extends Thread {
 				int pieceIndex = ByteBuffer.wrap(message, 0, 4).getInt();
 
 			} catch (Exception e) {
-				CommonProperties.DisplayMessageForUser(this,e.getMessage());
+				//CommonProperties.DisplayMessageForUser(this,e.getMessage());
 			}
 
 		}
