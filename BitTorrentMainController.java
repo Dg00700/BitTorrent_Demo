@@ -22,7 +22,7 @@ public class BitTorrentMainController {
 		CommonProperties.readPeerInfo();
 		CommonProperties.loadDataFromConfig();
 		CommonProperties.readConfigFile();
-		MessageModel.setId(peerId);
+		MessageModel.makeHandshake(peerId);
 		if (CommonProperties.getPeer(peerId).hasSharedFile) {
 			FileHandler.getInstance().splitFile();
 		}
@@ -63,6 +63,7 @@ class NetworkModel {
 class CommonProperties {
 
 	public static int numberOfChunks;
+	public static int nChunks;
 	public static int numberOfPreferredNeighbors;
 	public static int unchokingInterval;
 	public static int optimisticUnchokingInterval;
@@ -107,11 +108,12 @@ class CommonProperties {
 		// System.out.println("CommonProperties.calculateNumberOfPieces - Number of pieces: " + numberOfChunks);
 
 		int val = (int) (fileSize % pieceSize);
+		nChunks = (int) (fileSize / pieceSize);
 		if(val == 0){
-			numberOfChunks = (int) (fileSize / pieceSize);
+			numberOfChunks=nChunks;
 		}
 		else{
-			numberOfChunks = (int) (fileSize / pieceSize) + 1;
+			numberOfChunks = nChunks + 1;
 		}
 	}
 	public static String last_peer;

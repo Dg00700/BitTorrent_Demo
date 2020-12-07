@@ -288,14 +288,9 @@ class MessageModel {
 	public static synchronized String getRemotePeerId(byte[] b) {
 		int to = b.length;
 		int from = to - 4;
-		byte[] bytes = Arrays.copyOfRange(b, from, to);
-		String str = new String(bytes, StandardCharsets.UTF_8);
-		return str;
-	}
-
-	private static synchronized void initHandshake(String peerId) {
-
-		handshakeMessage += HANDSHAKE_HEADER + peerId;
+		byte[] arraycopy = Arrays.copyOfRange(b, from, to);
+		String msg = new String(arraycopy, StandardCharsets.UTF_8);
+		return msg;
 	}
 
 	public static synchronized byte[] getMessage() {
@@ -305,8 +300,8 @@ class MessageModel {
 		return handshake;
 	}
 
-	public static synchronized void setId(String peerId) {
-		initHandshake(peerId);
+	public static synchronized void makeHandshake(String peerId) {
+		handshakeMessage += HANDSHAKE_HEADER + peerId;
 	}
 
 	public static synchronized boolean verify(byte[] message, String peerId) {
