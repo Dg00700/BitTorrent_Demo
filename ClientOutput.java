@@ -8,106 +8,92 @@ import java.io.EOFException;
 import java.nio.ByteBuffer;
 
 public class ClientOutput implements Runnable {
-	protected BlockingQueue<Integer> outboundMessageLengthQueue;
-	protected BlockingQueue<byte[]> outboundMessageQueue;
-	private Socket socket;
-	private DataOutputStream outputDataStream;
-	private boolean isConnectionActive;
 
+	private Socket socket;
+	private DataOutputStream stream_output;
+	private boolean working;
+	public BlockingQueue<Integer> streamSize;
+	public BlockingQueue<byte[]> message_out;
+	
 	// client thread initialization
-	public ClientOutput(Socket clientSocket, String id, PeerProcess data) {
-		if(data!=null){
-			//needed to update the controller.
-		}
-		outboundMessageLengthQueue = new LinkedBlockingQueue<>();
-		outboundMessageQueue = new LinkedBlockingQueue<>();
-		isConnectionActive = true;
-		this.socket = clientSocket;
+	public ClientOutput(Socket socket, String id, PeerProcess data) {
+		
+		streamSize = new LinkedBlockingQueue<>();
+		message_out = new LinkedBlockingQueue<>();
+		working = true;
+		this.socket = socket;
 		try {
-			outputDataStream = new DataOutputStream(socket.getOutputStream());
+			stream_output = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		catch (Exception ex){
-			//Subside.
 		}
 	}
 
 	// server thread initialization
-	public ClientOutput(Socket clientSocket, PeerProcess data) {
+	public ClientOutput(Socket socket, PeerProcess data) {
 
-		PeerProcess currentController = data;
-		if(data!=null){
-			//needed to update the controller.
-		}
-		outboundMessageLengthQueue = new LinkedBlockingQueue<>();
-		outboundMessageQueue = new LinkedBlockingQueue<>();
-		isConnectionActive = true;
-		this.socket = clientSocket;
+		
+		streamSize = new LinkedBlockingQueue<>();
+		message_out = new LinkedBlockingQueue<>();
+		working = true;
+		this.socket = socket;
 		try {
-			outputDataStream = new DataOutputStream(socket.getOutputStream());
+			stream_output = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		catch (Exception ex){
-			//Subside.
+			System.out.println("Exception at DataOutputStream");
 		}
 	}
 
-	private void init(Socket clientSocket, PeerProcess data) {
-		PeerProcess currentController = data;
-		if(data!=null){
-			//needed to update the controller.
-		}
-		if(outputDataStream!=null) {
-			try {
-				outputDataStream = new DataOutputStream(socket.getOutputStream());
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (Exception ex) {
-				//Subside.
-			}
-		}
-	}
-
+	
 	@Override
 	public String toString(){
-		return "Socket is Active : "+isConnectionActive;
+		return "Socket is Active : "+working;
 	}
 
 	@Override
 	public void run() {
-		while (isConnectionActive) {
+		while (working) {
 			try {
-				sendMessageLength();
-				sendMessageData();
+				callMessageSize();
+				callData();
 			}
 			catch (SocketException e) {
-				isConnectionActive = false;
-				CommonProperties.DisplayMessageForUser(this,e.getMessage());
+
+				working = false;
+				
 			}
 			catch (Exception e) {
-				CommonProperties.DisplayMessageForUser(this,e.getMessage());
+				
 			}
 		}
 	}
-
-	private void sendMessageLength() throws Exception{
-		int messageLength = outboundMessageLengthQueue.take();
-		outputDataStream.writeInt(messageLength);
-		outputDataStream.flush();
+	public void callData(){
+		try{
+			byte[] message = message_out.take();
+		stream_output.write(message);
+		stream_output.flush();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Send Message");
+		}
+		
 	}
 
-	private void sendMessageData() throws Exception{
-		byte[] message = outboundMessageQueue.take();
-		outputDataStream.write(message);
-		outputDataStream.flush();
+	public void callMessageSize() throws Exception{
+		int messageLength = streamSize.take();
+		stream_output.writeInt(messageLength);
+		stream_output.flush();
 	}
 
+	
 	public void addMessage(int length, byte[] payload) {
 		try {
-			outboundMessageLengthQueue.put(length);
-			outboundMessageQueue.put(payload);
+			streamSize.put(length);
+			message_out.put(payload);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -115,8 +101,8 @@ public class ClientOutput implements Runnable {
 }
 
 class Client implements Runnable {
-	private boolean isDownloadActive;
-	private DataInputStream inputDataStream;
+	private boolean isDownload;
+	private DataInputStream input_stream;
 	private PeerProcess sharedData;
 	private Socket currentSocket;
 
@@ -125,94 +111,79 @@ class Client implements Runnable {
 	public Client(Socket socket, PeerProcess data) {
 		this.currentSocket = socket;
 		sharedData = data;
-		isDownloadActive = true;
+		isDownload = true;
 		try {
-			inputDataStream = new DataInputStream(socket.getInputStream());
+			input_stream = new DataInputStream(socket.getInputStream());
 		}
 		catch (Exception e) {
-			CommonProperties.DisplayMessageForUser(this,e.getMessage());
+			//pass
 		}
 	}
 
 	@Override
 	public void run() {
 
-		receiveMessage();
-	}
-
-	public void receiveMessage() {
-		while (isDownloadActive()) {
+		while (isDownload()) {
 			int messageLength = Integer.MIN_VALUE;
-			messageLength = receiveMessageLength();
-			if (!isDownloadActive()) {
+			messageLength = getInfoSize();
+			if (!isDownload()) {
 				continue;
 			}
 			byte[] message = new byte[messageLength];
-			receiveMessageData(message);
+			getMessage(message);
 			sharedData.addPayload(message);
 		}
 
 	}
+
+	
 	public void close()
 	{
-		boolean terminateSuccessfull = terminateClient();
+		//terminateClient();
 	}
 
-	private synchronized boolean isDownloadActive() {
+	private synchronized boolean isDownload() {
 
-		return isDownloadActive;
+		return isDownload;
 	}
 
-	private int receiveMessageLength() {
+	private int getInfoSize() {
 		int responseLength = Integer.MIN_VALUE;
 		byte[] messageLength = new byte[4];
 		try {
 			try {
-				inputDataStream.readFully(messageLength);
+				input_stream.readFully(messageLength);
 			}
 			catch (EOFException e) {
 				System.exit(0);
 			}
 			catch (Exception e) {
-				//System.out.println("No data to read");
+				//pass
 
 			}
 			responseLength = ByteBuffer.wrap(messageLength).getInt();
 		} catch (Exception e) {
-			CommonProperties.DisplayMessageForUser(this,e.getMessage());
+			
 		}
 		return responseLength;
 	}
 
-	private void receiveMessageData(byte[] message) {
+	private void getMessage(byte[] message) {
 		try {
-			inputDataStream.readFully(message);
+			input_stream.readFully(message);
 		}
 		catch (EOFException e) {
 			System.exit(0);
 		}
 		catch (Exception e) {
-			//System.out.println("No data to read");
+			//System.exit(0)
 
 		}
 	}
 
 
 
-	public boolean terminateClient(){
-		try{
-			if(currentSocket!=null){
-				synchronized (this){
-					currentSocket.close();
-					return true;
-				}
-			}
-		}
-		catch (Exception ex){
-			CommonProperties.DisplayMessageForUser(null,"UnHandled Client termination");
-			return false;
-		}
-		return false;
-	}
-
+	
 }
+
+
