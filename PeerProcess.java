@@ -19,8 +19,6 @@ class DataMessageWrapper
 	}
 }
 
-
-
 public class PeerProcess extends Thread {
 	private BitSet peerBitset;
 	private String remotePeerId;
@@ -49,7 +47,7 @@ public class PeerProcess extends Thread {
 	public void setUpload(ClientOutput value) {
 		clientOutput = value;
 		if (getUploadHandshake()) {
-			broadcaster.generateMsg(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			broadcaster.addMessage(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 	}
 
@@ -114,20 +112,20 @@ public class PeerProcess extends Thread {
 
 	private MessageModel.Type processChoke()
 	{
-		LoggerHandler.getInstance().logChokNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
+		LoggerHandler.getInstance().choked(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
 		activeConnection.removeRequestedPiece();
 		return null;
 	}
 
 	private MessageModel.Type processInterested(){
-		LoggerHandler.getInstance().logInterestedMessage(CommonProperties.getTime(), BitTorrentMainController.peerId,
+		LoggerHandler.getInstance().receiveInterested(CommonProperties.getTime(), BitTorrentMainController.peerId,
 				activeConnection.getRemotePeerId());
 		activeConnection.processAcceptedPeerConnections();
 		return null;
 	}
 
 	private MessageModel.Type processNotInterested(){
-		LoggerHandler.getInstance().logNotInterestedMessage(CommonProperties.getTime(), BitTorrentMainController.peerId,
+		LoggerHandler.getInstance().receiveNotInterested(CommonProperties.getTime(), BitTorrentMainController.peerId,
 				activeConnection.getRemotePeerId());
 		activeConnection.processRejectedPeerConnections();
 		return null;
@@ -149,50 +147,90 @@ public class PeerProcess extends Thread {
 		
 		MessageModel.Type responseMessageType = null;
 		int fileChunkIndex = Integer.MIN_VALUE;
+		
 		System.out.println("Received message: " + messageType);
-		if(messageType==MessageModel.Type.CHOKE){
-			responseMessageType=processChoke();
-		}
-		else if(messageType==MessageModel.Type.UNCHOKE){
-			LoggerHandler.getInstance().logUnchokNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
+		// if(messageType==MessageModel.Type.CHOKE){
+		// 	responseMessageType=processChoke();
+		// }
+		// else if(messageType==MessageModel.Type.UNCHOKE){
+		// 	LoggerHandler.getInstance().unchoked(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
+		// 	responseMessageType = MessageModel.Type.REQUEST;
+		// 	fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
+		// }
+		// else if(messageType==MessageModel.Type.INTERESTED){
+		// 	responseMessageType = processInterested();
+		// }
+		// else if(messageType==MessageModel.Type.NOTINTERESTED){
+		// 	responseMessageType = processNotInterested();
+		// }
+		// else if(messageType==MessageModel.Type.HAVE){
+		// 	fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
+		// 		LoggerHandler.getInstance().receiveHave(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
+		// 				fileChunkIndex);
+		// 		updatePeerBitset(fileChunkIndex);
+		// 		responseMessageType = getInterestedNotInterested();
+		// }
+		// else if(messageType==MessageModel.Type.BITFIELD){
+		// 	setPeerBitset(message);
+		// 		responseMessageType = getInterestedNotInterested();
+		// }
+		// else if(messageType==MessageModel.Type.REQUEST){
+		// 	responseMessageType = MessageModel.Type.PIECE;
+		// 		byte[] content = new byte[4];
+		// 		System.arraycopy(message, 1, content, 0, 4);
+		// 		fileChunkIndex = ByteBuffer.wrap(content).getInt();
+		// 		if (fileChunkIndex == Integer.MIN_VALUE) {
+		// 			System.out.println("received file");
+		// 			responseMessageType = null;
+		// 		}
+		// }
+		// else if(messageType==MessageModel.Type.PIECE){
+		// 	processPiece(fileChunkIndex,message,responseMessageType,messageType);
+		// }
+		// else if(messageType==MessageModel.Type.HANDSHAKE){
+		// 	processHandshake(message,responseMessageType,fileChunkIndex);
+		// }
+		switch (messageType) {
+			case CHOKE:	responseMessageType = processChoke();
+			break;
+		case UNCHOKE:
+			LoggerHandler.getInstance().unchoked(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
 			responseMessageType = MessageModel.Type.REQUEST;
 			fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
-		}
-		else if(messageType==MessageModel.Type.INTERESTED){
-			responseMessageType = processInterested();
-		}
-		else if(messageType==MessageModel.Type.NOTINTERESTED){
-			responseMessageType = processNotInterested();
-		}
-		else if(messageType==MessageModel.Type.HAVE){
+			break;
+		case INTERESTED: responseMessageType = processInterested();
+			break;
+		case NOTINTERESTED: responseMessageType = processNotInterested();
+			break;
+		case HAVE:
 			fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
-				LoggerHandler.getInstance().logReceivedHaveMessage(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
-						fileChunkIndex);
-				updatePeerBitset(fileChunkIndex);
-				responseMessageType = getInterestedNotInterested();
-		}
-		else if(messageType==MessageModel.Type.BITFIELD){
+			LoggerHandler.getInstance().receiveHave(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
+					fileChunkIndex);
+			updatePeerBitset(fileChunkIndex);
+			responseMessageType = getInterestedNotInterested();
+			break;
+		case BITFIELD:
 			setPeerBitset(message);
-				responseMessageType = getInterestedNotInterested();
-		}
-		else if(messageType==MessageModel.Type.REQUEST){
+			responseMessageType = getInterestedNotInterested();
+			break;
+		case REQUEST:
 			responseMessageType = MessageModel.Type.PIECE;
-				byte[] content = new byte[4];
-				System.arraycopy(message, 1, content, 0, 4);
-				fileChunkIndex = ByteBuffer.wrap(content).getInt();
-				if (fileChunkIndex == Integer.MIN_VALUE) {
-					System.out.println("received file");
-					responseMessageType = null;
-				}
-		}
-		else if(messageType==MessageModel.Type.PIECE){
-			processPiece(fileChunkIndex,message,responseMessageType,messageType);
-		}
-		else if(messageType==MessageModel.Type.HANDSHAKE){
-			processHandshake(message,responseMessageType,fileChunkIndex);
-		}
+			byte[] content = new byte[4];
+			System.arraycopy(message, 1, content, 0, 4);
+			fileChunkIndex = ByteBuffer.wrap(content).getInt();
+			if (fileChunkIndex == Integer.MIN_VALUE) {
+				System.out.println("received file");
+				responseMessageType = null;
+			}
+			break;
+		case PIECE:	processPiece(fileChunkIndex,message,responseMessageType,messageType);
+			break;
+		case HANDSHAKE: processHandshake(message,responseMessageType,fileChunkIndex);
+			break;
+	}
+
 		if (null != responseMessageType) {
-			broadcaster.generateMsg(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}
 	}
 	catch(Exception e){
@@ -206,20 +244,20 @@ public class PeerProcess extends Thread {
 		fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
 		activeConnection.incrementTotalBytesDownloaded(message.length);
 		fileHandler.setPiece(Arrays.copyOfRange(message, 1, message.length));
-		LoggerHandler.getInstance().logDownloadedPiece(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
+		LoggerHandler.getInstance().downloadingPiece(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
 				fileChunkIndex, fileHandler.getReceivedFileSize());
 		responseMessageType = MessageModel.Type.REQUEST;
 		activeConnection.broadCastHavetoAllRegisteredPeers(fileChunkIndex);
 		fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
 		if (fileChunkIndex == Integer.MIN_VALUE) {
-			LoggerHandler.getInstance().logDownloadComplete(CommonProperties.getTime(), BitTorrentMainController.peerId);
+			LoggerHandler.getInstance().downloadComplete(CommonProperties.getTime(), BitTorrentMainController.peerId);
 			fileHandler.writeToFile(BitTorrentMainController.peerId);
 			messageType = null;
 			isPeerProcessInstanceAlive = false;
 			responseMessageType = null;
 		}
 		if (null != responseMessageType) {
-			broadcaster.generateMsg(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}
 	}
 
@@ -240,14 +278,14 @@ public class PeerProcess extends Thread {
 		activeConnection.registerConnection();
 		if (!getUploadHandshake()) {
 			setUploadHandshake();
-			LoggerHandler.getInstance().logTcpConnectionFrom(node.getNetwork().getPeerId(), remotePeerId);
-			broadcaster.generateMsg(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			LoggerHandler.getInstance().connectionFrom(node.getNetwork().getPeerId(), remotePeerId);
+			broadcaster.addMessage(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 		if (fileHandler.hasAnyPieces()) {
 			responseMessageType = MessageModel.Type.BITFIELD;
 		}
 		if (null != responseMessageType) {
-			broadcaster.generateMsg(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}
 	}
 

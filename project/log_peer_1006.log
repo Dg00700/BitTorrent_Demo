@@ -1,0 +1,299 @@
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 makes a TCP Connection to Peer 1005.
+Wed Dec 09 16:15:38 EST 2020: Building HANDSHAKE from 1006 to 1005.
+Wed Dec 09 16:15:38 EST 2020: Exchanging BITFIELD message from 1006 to 1005.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 makes a TCP Connection to Peer 1001.
+Wed Dec 09 16:15:38 EST 2020: Building HANDSHAKE from 1006 to 1001.
+Wed Dec 09 16:15:38 EST 2020: Exchanging BITFIELD message from 1006 to 1001.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 makes a TCP Connection to Peer 1003.
+Wed Dec 09 16:15:38 EST 2020: Building HANDSHAKE from 1006 to 1003.
+Wed Dec 09 16:15:38 EST 2020: Exchanging BITFIELD message from 1006 to 1003.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 makes a TCP Connection to Peer 1004.
+Wed Dec 09 16:15:38 EST 2020: Building HANDSHAKE from 1006 to 1004.
+Wed Dec 09 16:15:38 EST 2020: Exchanging BITFIELD message from 1006 to 1004.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 makes a TCP Connection to Peer 1002.
+Wed Dec 09 16:15:38 EST 2020: Building HANDSHAKE from 1006 to 1002.
+Wed Dec 09 16:15:38 EST 2020: Exchanging BITFIELD message from 1006 to 1002.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 is unchoked by 1002.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:38 EST 2020: Peer 1006 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:38 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 is connected from Peer 1007.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'interested' message from 1007.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 38.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 35.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 46.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 43.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 20.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 30.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 62.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 53.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 24.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 11.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 65.
+Wed Dec 09 16:15:42 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 65.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 29.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 6.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 3.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 12.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 1.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 10.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 7.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 5.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 59.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 7.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 23.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 48.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 40.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 16.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 31.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 22.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 61.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 45.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 27.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 41.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 44.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 49.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 27.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 54.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 33.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 15.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 34.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 19.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 37.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 13.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 15.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 52.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 2.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 2.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 64.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 26.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 63.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 56.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 25.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 64.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 9.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 56.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 47.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 58.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 36.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 36.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 18.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 18.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 39.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 32.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 14.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 18.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 0.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 4.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 50.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 42.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 57.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 8.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 51.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 66.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 8.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 8.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 55.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 21.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 21.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 17.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 55.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 55.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 28.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 17.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 17.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 28.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 28.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 60.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 60.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 60.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 60.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 60.
+Wed Dec 09 16:15:43 EST 2020: Peer 1006 received the 'have' message from 1007 for the piece 60.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 is connected from Peer 1008.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'interested' message from 1008.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 7.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 43.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 27.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 8.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 40.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 24.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 36.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 3.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 5.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 58.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 19.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 56.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 47.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 45.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 23.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 63.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 17.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 26.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 47.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 31.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 62.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 50.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 49.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 0.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 37.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 25.
+Wed Dec 09 16:15:46 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 30.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 57.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 37.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 44.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 55.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 9.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 60.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 15.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 55.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 2.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 54.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 34.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 22.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 34.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 29.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 6.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 12.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 4.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 13.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 6.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 53.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 39.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 65.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 51.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 33.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 59.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 35.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 35.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 66.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 21.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 33.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 59.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 10.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 41.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 14.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 38.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 41.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 16.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 42.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 46.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 48.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 48.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 42.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 18.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 52.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 has the preferred neighbors 1008.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 61.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 52.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 64.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 28.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 28.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 20.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 28.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 32.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 32.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 20.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 11.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 32.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 1.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 32.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 11.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 11.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 1.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 1.
+Wed Dec 09 16:15:47 EST 2020: Peer 1006 received the 'have' message from 1008 for the piece 1.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 is connected from Peer 1009.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'interested' message from 1009.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 50.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 28.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 52.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 46.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 28.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 5.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 35.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 51.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 60.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 20.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 41.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 49.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 has the preferred neighbors 1009.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 17.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 56.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 19.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 4.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 47.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 7.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 8.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 0.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 27.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 11.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 31.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 31.
+Wed Dec 09 16:15:50 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 54.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 42.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 66.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 45.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 16.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 18.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 59.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 40.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 37.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 1.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 43.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 23.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 53.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 3.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 63.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 43.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 10.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 39.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 21.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 61.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 64.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 58.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 57.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 6.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 12.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 2.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 38.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 33.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 2.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 6.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 22.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 9.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 62.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 9.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 24.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 36.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 26.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 34.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 48.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 44.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 13.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 25.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 15.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 30.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 44.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 48.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 15.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 29.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 30.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 55.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 65.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 32.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 65.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 32.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 55.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 55.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 14.
+Wed Dec 09 16:15:51 EST 2020: Peer 1006 received the 'have' message from 1009 for the piece 32.

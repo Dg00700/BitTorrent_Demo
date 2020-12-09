@@ -1,9 +1,7 @@
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.StandardOpenOption;
@@ -11,15 +9,37 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Random;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.concurrent.*;
+import java.io.RandomAccessFile;
 
 public class FileHandler extends Thread {
 	private static ConcurrentHashMap<Integer, byte[]> file;
-	private volatile static BitSet filePieces;
-	private static FileChannel outputFileChannel;
+	private volatile static BitSet shradedFile;
+	private static FileChannel fileOutputChannel;
 	private BlockingQueue<byte[]> fileQueue;
-	private static FileHandler instance;
+	private static FileHandler handlerInstance;
+	
+	
 	private volatile HashMap<ConnectionModel, Integer> requestedChunks;
+
+	static {
+		file = new ConcurrentHashMap<Integer, byte[]>();
+		shradedFile = new BitSet(CommonProperties.numberOfChunks);
+		try {
+			File newFile = new File(CommonProperties.PROPERTIES_CREATED_FILE_PATH + BitTorrentMainController.peerId
+					+ File.separatorChar + CommonProperties.fileName);
+			newFile.getParentFile().mkdirs(); // Will create parent directories if not exists
+			newFile.createNewFile();
+			fileOutputChannel = FileChannel.open(newFile.toPath(), StandardOpenOption.WRITE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 
 	private FileHandler() {
 		fileQueue = new LinkedBlockingQueue<>();
@@ -27,82 +47,64 @@ public class FileHandler extends Thread {
 	}
 
 	public void forceCloseOutputChannel() throws  Exception{
-		if(outputFileChannel!=null){
-			outputFileChannel.close();
+		if(fileOutputChannel!=null){
+			fileOutputChannel.close();
 		}
 	}
 
 	public static FileHandler getInstance() {
 		synchronized (FileHandler.class) {
-			if (null == instance) {
-				instance = new FileHandler();
-				instance.start();
+			if (null == handlerInstance) {
+				handlerInstance = new FileHandler();
+				handlerInstance.start();
 			}
 		}
-		return instance;
+		return handlerInstance;
 	}
 
-	static {
-		file = new ConcurrentHashMap<Integer, byte[]>();
-		filePieces = new BitSet(CommonProperties.numberOfChunks);
-		try {
-			File createdFile = new File(CommonProperties.PROPERTIES_CREATED_FILE_PATH + BitTorrentMainController.peerId
-					+ File.separatorChar + CommonProperties.fileName);
-			createdFile.getParentFile().mkdirs(); // Will create parent directories if not exists
-			createdFile.createNewFile();
-			outputFileChannel = FileChannel.open(createdFile.toPath(), StandardOpenOption.WRITE);
-		} catch (IOException e) {
-			System.out.println("Failed to create new file while receiving the file from host peer");
-			e.printStackTrace();
-		}
+
+	public synchronized byte[] getFileChunkByIndex(int pieceIndex) {
+		return file.get(pieceIndex);
 	}
 
-	public synchronized byte[] getFileChunkByIndex(int chunkIndex) {
-		return file.get(chunkIndex);
-	}
-
-	private void readFileInChunks(int numberOfChunks,int fileSize, DataInputStream dataInputStream) throws IOException{
-		int chunkIndex = 0;
+	private void readFileInChunks(int numberOfChunks,int fileSize, DataInputStream dInputStream) throws IOException{
+		int pieceIndex = 0;
 		for (int i = 0; i < CommonProperties.numberOfChunks; i++) {
 			int chunkSize = i != numberOfChunks - 1 ? CommonProperties.pieceSize
 					: fileSize % CommonProperties.pieceSize;
 			byte[] piece = new byte[chunkSize];
-			dataInputStream.readFully(piece);
-			file.put(chunkIndex, piece);
-			filePieces.set(chunkIndex++);
+			dInputStream.readFully(piece);
+			file.put(pieceIndex, piece);
+			shradedFile.set(pieceIndex++);
 		}
 	}
 
 	public void splitFile() {
 		File filePtr = new File(CommonProperties.PROPERTIES_FILE_PATH + CommonProperties.fileName);
-		FileInputStream fileInputStream = null;
-		DataInputStream dataInputStream = null;
+		FileInputStream fInputStream = null;
+		DataInputStream dInputStream = null;
 		try {
-			fileInputStream = new FileInputStream(filePtr);
-			dataInputStream = new DataInputStream(fileInputStream);
+			fInputStream = new FileInputStream(filePtr);
+			dInputStream = new DataInputStream(fInputStream);
 			try {
-				//CommonProperties.DisplayMessageForUser(this,"Started Splitting the file");
-				readFileInChunks(CommonProperties.numberOfChunks,
-								(int) CommonProperties.fileSize,
-								dataInputStream);
+				readFileInChunks(CommonProperties.numberOfChunks, (int) CommonProperties.fileSize, dInputStream);
 			}
 			catch (IOException fileReadError) {
 				fileReadError.printStackTrace();
-				//CommonProperties.DisplayMessageForUser(this,"Error while splitting file");
+				
 			}
 
 		}
 		catch (FileNotFoundException e) {
-			//CommonProperties.DisplayMessageForUser(this,"Error reading common.cfg file");
 			e.printStackTrace();
 		}
 		finally {
 			try {
-				fileInputStream.close();
-				dataInputStream.close();
+				fInputStream.close();
+				dInputStream.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				//CommonProperties.DisplayMessageForUser(this,"Error while closing fileinputstream after reading file");
+				
 			}
 		}
 	}
@@ -113,40 +115,64 @@ public class FileHandler extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				byte[] message = fileQueue.take();
-				int pieceIndex = ByteBuffer.wrap(message, 0, 4).getInt();
+				byte[] info = fileQueue.take();
+				int pieceIndex = ByteBuffer.wrap(info, 0, 4).getInt();
 
 			} catch (Exception e) {
-				//CommonProperties.DisplayMessageForUser(this,e.getMessage());
+				
 			}
 
 		}
 	}
 
 	public synchronized void setPiece(byte[] payload) {
-		filePieces.set(ByteBuffer.wrap(payload, 0, 4).getInt());
+		shradedFile.set(ByteBuffer.wrap(payload, 0, 4).getInt());
 		file.put(ByteBuffer.wrap(payload, 0, 4).getInt(), Arrays.copyOfRange(payload, 4, payload.length));
 		try {
 			fileQueue.put(payload);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (InterruptedException Ex) {
+			Ex.printStackTrace();
 		}
 	}
 
+	private void loadFile(int pieceSize, int FileSize, int PieceSize) throws IOException {
+		RandomAccessFile file = null;
+		int totalPieces = (int)Math.ceil((double)(FileSize / PieceSize));
+		for (int i = 0; i < totalPieces; i++) {
+			int pieceLength = Math.min(PieceSize, FileSize - i * pieceSize);
+			byte[] data = new byte[pieceLength];
+			file.seek(i*pieceSize);
+			
+		}
+	}
+	public BitSet getFilePieces() {
+		return shradedFile;
+	}
+
+	public synchronized boolean hasAnyPieces() {
+		return shradedFile.nextSetBit(0) != -1;
+	}
+
+	public synchronized void addRequestedPiece(ConnectionModel connection, int pieceIndex) {
+		requestedChunks.put(connection, pieceIndex);
+
+	}
+
+	public synchronized void removeRequestedPiece(ConnectionModel connection) {
+		requestedChunks.remove(connection);
+	}
 	public synchronized void writeToFile(String peerId) {
-		String filename = CommonProperties.PROPERTIES_CREATED_FILE_PATH + peerId + File.separatorChar
-				+ CommonProperties.fileName;
-		System.out.println(filename);
-		FileOutputStream outputStream = null;
+		String fName = CommonProperties.PROPERTIES_CREATED_FILE_PATH + peerId + File.separatorChar + CommonProperties.fileName;
+		System.out.println(fName);
+		FileOutputStream optStream = null;
 		try {
-			outputStream = new FileOutputStream(filename);
+			optStream = new FileOutputStream(fName);
 			for (int i = 0; i < file.size(); i++) {
 				try {
 					synchronized(this){
-						if(outputStream==null || file==null)
+						if(optStream==null || file==null)
 							continue;
-						outputStream.write(file.get(i));
+						optStream.write(file.get(i));
 					}
 				} catch (Exception e) {
 					System.out.println("Waiting...");
@@ -155,11 +181,11 @@ public class FileHandler extends Thread {
 			}
 		}
 		catch (FileNotFoundException e) {
-			//Subdue exception
+			//pass
 		}
 		finally {
 			try {
-				outputStream.flush();
+				optStream.flush();
 			}
 			catch (Exception ex){
 				System.out.println("OutputStreamed failed to clear, beginning retry...");
@@ -168,15 +194,15 @@ public class FileHandler extends Thread {
 	}
 
 	public synchronized boolean isPieceAvailable(int index) {
-		return filePieces.get(index);
+		return shradedFile.get(index);
 	}
 
 	public synchronized boolean isCompleteFile() {
-		return filePieces.cardinality() == CommonProperties.numberOfChunks;
+		return shradedFile.cardinality() == CommonProperties.numberOfChunks;
 	}
 
 	public synchronized int getReceivedFileSize() {
-		return filePieces.cardinality();
+		return shradedFile.cardinality();
 	}
 
 	protected synchronized int getRequestPieceIndex(ConnectionModel conn) {
@@ -187,7 +213,7 @@ public class FileHandler extends Thread {
 		BitSet peerBitset = conn.getPeerBitSet();
 		int numberOfPieces = CommonProperties.numberOfChunks;
 		BitSet peerClone = (BitSet) peerBitset.clone();
-		BitSet myClone = (BitSet) filePieces.clone();
+		BitSet myClone = (BitSet) shradedFile.clone();
 		peerClone.andNot(myClone);
 		if (peerClone.cardinality() == 0) {
 			return Integer.MIN_VALUE;
@@ -199,21 +225,6 @@ public class FileHandler extends Thread {
 		return missingPieces[new Random().nextInt(missingPieces.length)];
 	}
 
-	public BitSet getFilePieces() {
-		return filePieces;
-	}
-
-	public synchronized boolean hasAnyPieces() {
-		return filePieces.nextSetBit(0) != -1;
-	}
-
-	public synchronized void addRequestedPiece(ConnectionModel connection, int pieceIndex) {
-		requestedChunks.put(connection, pieceIndex);
-
-	}
-
-	public synchronized void removeRequestedPiece(ConnectionModel connection) {
-		requestedChunks.remove(connection);
-	}
+	
 
 }

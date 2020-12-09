@@ -1,0 +1,827 @@
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1003.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1003.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1001.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1001.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1005.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1005.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1007.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1007.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1006.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1006.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1008.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1008.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1002.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1002.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 makes a TCP Connection to Peer 1004.
+Wed Dec 09 16:15:50 EST 2020: Building HANDSHAKE from 1009 to 1004.
+Wed Dec 09 16:15:50 EST 2020: Exchanging BITFIELD message from 1009 to 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1006.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1002.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 50 from 1001.Now the number of pieces it has is 1
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 28 from 1003.Now the number of pieces it has is 2
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 52 from 1005.Now the number of pieces it has is 3
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 is unchoked by 1004.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 46 from 1007.Now the number of pieces it has is 4
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 28 from 1006.Now the number of pieces it has is 4
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 5 from 1002.Now the number of pieces it has is 5
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 35 from 1001.Now the number of pieces it has is 6
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 51 from 1003.Now the number of pieces it has is 7
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 60 from 1008.Now the number of pieces it has is 8
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 20 from 1005.Now the number of pieces it has is 9
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 41 from 1004.Now the number of pieces it has is 10
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 49 from 1007.Now the number of pieces it has is 11
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 17 from 1006.Now the number of pieces it has is 12
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 56 from 1002.Now the number of pieces it has is 13
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 19 from 1001.Now the number of pieces it has is 14
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 4 from 1003.Now the number of pieces it has is 15
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 47 from 1008.Now the number of pieces it has is 16
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 7 from 1005.Now the number of pieces it has is 17
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 8 from 1004.Now the number of pieces it has is 18
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 0 from 1007.Now the number of pieces it has is 19
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 27 from 1006.Now the number of pieces it has is 20
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 11 from 1002.Now the number of pieces it has is 21
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 31 from 1001.Now the number of pieces it has is 22
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 31 from 1003.Now the number of pieces it has is 22
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 54 from 1008.Now the number of pieces it has is 23
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 42 from 1005.Now the number of pieces it has is 24
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 66 from 1004.Now the number of pieces it has is 25
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 45 from 1007.Now the number of pieces it has is 26
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 16 from 1006.Now the number of pieces it has is 27
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 18 from 1002.Now the number of pieces it has is 28
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 59 from 1001.Now the number of pieces it has is 29
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:50 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 has downloaded the 'PIECE' 40 from 1003.Now the number of pieces it has is 30
+Wed Dec 09 16:15:50 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 37 from 1008.Now the number of pieces it has is 31
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 1 from 1005.Now the number of pieces it has is 32
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 43 from 1004.Now the number of pieces it has is 33
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 23 from 1007.Now the number of pieces it has is 34
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 53 from 1006.Now the number of pieces it has is 35
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 3 from 1002.Now the number of pieces it has is 36
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 63 from 1001.Now the number of pieces it has is 37
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 43 from 1003.Now the number of pieces it has is 37
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 10 from 1008.Now the number of pieces it has is 38
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 39 from 1005.Now the number of pieces it has is 39
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 21 from 1004.Now the number of pieces it has is 40
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 61 from 1007.Now the number of pieces it has is 41
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 64 from 1006.Now the number of pieces it has is 42
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 58 from 1002.Now the number of pieces it has is 43
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 57 from 1001.Now the number of pieces it has is 44
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 6 from 1003.Now the number of pieces it has is 45
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 12 from 1008.Now the number of pieces it has is 46
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 2 from 1005.Now the number of pieces it has is 47
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 38 from 1004.Now the number of pieces it has is 48
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 33 from 1007.Now the number of pieces it has is 49
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 2 from 1006.Now the number of pieces it has is 49
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 6 from 1002.Now the number of pieces it has is 49
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 22 from 1001.Now the number of pieces it has is 50
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 9 from 1003.Now the number of pieces it has is 51
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 62 from 1008.Now the number of pieces it has is 52
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 9 from 1005.Now the number of pieces it has is 52
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 24 from 1004.Now the number of pieces it has is 53
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 36 from 1007.Now the number of pieces it has is 54
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 26 from 1006.Now the number of pieces it has is 55
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 34 from 1002.Now the number of pieces it has is 56
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 48 from 1001.Now the number of pieces it has is 57
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 44 from 1003.Now the number of pieces it has is 58
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 13 from 1008.Now the number of pieces it has is 59
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 25 from 1005.Now the number of pieces it has is 60
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 15 from 1004.Now the number of pieces it has is 61
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 30 from 1007.Now the number of pieces it has is 62
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 44 from 1006.Now the number of pieces it has is 62
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 48 from 1002.Now the number of pieces it has is 62
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 15 from 1001.Now the number of pieces it has is 62
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 29 from 1003.Now the number of pieces it has is 63
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 30 from 1008.Now the number of pieces it has is 63
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 55 from 1005.Now the number of pieces it has is 64
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 65 from 1004.Now the number of pieces it has is 65
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 32 from 1007.Now the number of pieces it has is 66
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 65 from 1006.Now the number of pieces it has is 66
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 32 from 1002.Now the number of pieces it has is 66
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 55 from 1001.Now the number of pieces it has is 66
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 55 from 1008.Now the number of pieces it has is 66
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1005.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1005.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1007.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1007.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1006.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1006.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1001.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1001.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: REQUEST to peer 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1008.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1008.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1001.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1006.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1003.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1004.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 received the 'not interested' message from 1002.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1003.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1007.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 14 from 1002.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the 'PIECE' 32 from 1004.Now the number of pieces it has is 67
+Wed Dec 09 16:15:51 EST 2020: Peer 1009 has downloaded the complete file.

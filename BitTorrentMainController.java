@@ -7,6 +7,10 @@ import java.util.Properties;
 import java.util.Scanner;
 import java.util.*;
 import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.HashMap;
+
 
 
 public class BitTorrentMainController {
@@ -28,8 +32,8 @@ public class BitTorrentMainController {
 		System.out.println("Peer Number:"+ peerId);
 		CommonProperties.PrintConfigDetails();
 		Node current = Node.getInstance();
-		current.startOutGoingConnections();
-		current.startMonitoringIncomingConnections();
+		current.startClientModule();
+		current.startListeningServer();
 
 	}
 
@@ -204,10 +208,10 @@ class CommonProperties {
 		CommonProperties.fileSize = Long.parseLong(properties.get(CommonProperties.FILESIZE).toString());
 		CommonProperties.setNumberOfPreferredNeighbors(
 				Integer.parseInt(properties.get(CommonProperties.NUMBER_OF_PREFERRED_NEIGHBORS).toString()));
-		CommonProperties.optimisticUnchokingInterval =
+		CommonProperties.optimisticUnchokingInterval = 
 				Integer.parseInt(properties.get(CommonProperties.OPTIMISTIC_UNCHOKING_INTERVAL).toString());
 		CommonProperties.pieceSize = Integer.parseInt(properties.getProperty(CommonProperties.PIECESIZE).toString());
-		CommonProperties.unchokingInterval =
+		CommonProperties.unchokingInterval = 
 				Integer.parseInt(properties.getProperty(CommonProperties.UNCHOKING_INTERVAL).toString());
 		CommonProperties.calculateNumberOfPieces();
 		System.out.println(CommonProperties.PROPERTIES_FILE_PATH);
@@ -258,4 +262,97 @@ class CommonProperties {
     }
 	
 
+}
+
+class Node {
+	public static boolean didEveryoneReceiveTheFile = false;
+	private static Node current = new Node();
+	private NetworkModel networkModel;
+	ConnectionController connectionController;
+
+	public Node() {
+		networkModel = CommonProperties.getPeer(BitTorrentMainController.peerId);
+		connectionController = ConnectionController.getInstance();
+	}
+
+	public void startListeningServer()  {
+
+		ServerSocket socket = null;
+		try {
+			socket = new ServerSocket(networkModel.port);
+			while (!didEveryoneReceiveTheFile) {
+				Socket peerSocket = socket.accept();
+				connectionController.createConnection(peerSocket);
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Closed exception");
+		}
+		finally {
+			try{
+				socket.close();
+			}
+			catch (Exception e) {
+				System.out.println("Closed exception");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void startClientModule() {
+		HashMap<String, NetworkModel> map = CommonProperties.getPeerList();
+		int myNumber = networkModel.networkId;
+		//System.out.println("HIIIII"+myNumber);
+		for (String peerId : map.keySet()) {
+			NetworkModel peerInfo = map.get(peerId);
+			if (peerInfo.networkId < myNumber) {
+				new Thread() {
+					@Override
+					public void run() {
+
+						int peerPort = peerInfo.port;
+						String peerHost = peerInfo.hostName;
+						try {
+							Socket clientSocket = new Socket(peerHost, peerPort);
+							connectionController.createConnection(clientSocket, peerInfo.getPeerId());
+							Thread.sleep(300);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}.start();
+
+			}
+		}
+	}
+
+	public void checkIfAllpeerRecievedFile(){
+		if(didEveryoneReceiveTheFile){
+			if(current!=null){
+				System.out.println("all peers Have recieved file.");
+			}
+		}
+	}
+
+	public static Node getInstance() {
+		return current;
+	}
+
+
+	public NetworkModel getNetwork() {
+		return networkModel;
+	}
+
+	public void close(){
+		try{
+			if(didEveryoneReceiveTheFile){
+				if(current!=null){
+					 System.out.println("all peers Have recieved file.");
+				}
+			}
+		}
+		catch (Exception ex){
+			ex.printStackTrace();
+		}
+	}
 }

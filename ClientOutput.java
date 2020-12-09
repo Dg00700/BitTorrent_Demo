@@ -16,7 +16,7 @@ public class ClientOutput implements Runnable {
 	public BlockingQueue<byte[]> message_out;
 	
 	// client thread initialization
-	public ClientOutput(Socket socket, String id, PeerProcess data) {
+	public ClientOutput(Socket socket, String id, PeerProcess current) {
 		
 		streamSize = new LinkedBlockingQueue<>();
 		message_out = new LinkedBlockingQueue<>();
@@ -30,7 +30,7 @@ public class ClientOutput implements Runnable {
 	}
 
 	// server thread initialization
-	public ClientOutput(Socket socket, PeerProcess data) {
+	public ClientOutput(Socket socket, PeerProcess current) {
 
 		
 		streamSize = new LinkedBlockingQueue<>();
@@ -108,9 +108,9 @@ class Client implements Runnable {
 
 
 
-	public Client(Socket socket, PeerProcess data) {
+	public Client(Socket socket, PeerProcess current) {
 		this.currentSocket = socket;
-		sharedData = data;
+		sharedData = current;
 		isDownload = true;
 		try {
 			input_stream = new DataInputStream(socket.getInputStream());
