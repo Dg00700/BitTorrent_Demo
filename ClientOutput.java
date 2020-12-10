@@ -131,7 +131,7 @@ class Client implements Runnable {
 			}
 			byte[] message = new byte[messageLength];
 			getMessage(message);
-			sharedData.addPayload(message);
+			sharedData.add_Data(message);
 		}
 
 	}

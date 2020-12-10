@@ -55,11 +55,7 @@ class NetworkModel {
 		this.hasSharedFile = hasSharedFile;
 	}
 
-	// @Override
-	// public String toString() {
-	// 	return "Peer [peerId=" + peerId + ", hostName=" + hostName + ", port=" + port + ", hasSharedFile="
-	// 			+ hasSharedFile + "]";
-	// }
+	
 }
 
 
@@ -106,10 +102,7 @@ class CommonProperties {
 
 
 	public static void calculateNumberOfPieces() {
-		// numberOfChunks = (int) (fileSize % pieceSize) == 0 ? (int) (fileSize / pieceSize)
-		// 		: (int) (fileSize / pieceSize) + 1;
-		// System.out.println("CommonProperties.calculateNumberOfPieces - Number of pieces: " + numberOfChunks);
-
+		
 		int val = (int) (fileSize % pieceSize);
 		nChunks = (int) (fileSize / pieceSize);
 		if(val == 0){
@@ -146,20 +139,7 @@ class CommonProperties {
 
 	}
 
-	// public static void DisplayMessageForUser(Object instance, String message){
-	// 	try {
-	// 		String sender = "";
-	// 		if (instance != null)
-	// 			sender = instance.toString();
-	// 		else
-	// 			sender = "Unknown";
-	// 		System.out.println("Sender " + sender + " Message : " + message);
-	// 	}
-	// 	catch (Exception ex){
-	// 		System.out.println(message);
-	// 	}
-	// }
-
+	
 	public static void PrintConfigDetails() {
 		System.out.println( "PeerProperties");
 		System.out.println("numberOfPreferredNeighbors = " + numberOfPreferredNeighbors);  

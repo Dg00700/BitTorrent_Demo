@@ -20,114 +20,115 @@ class DataMessageWrapper
 }
 
 public class PeerProcess extends Thread {
-	private BitSet peerBitset;
-	private String remotePeerId;
+	private String peer_id;
 
-	private FileHandler fileHandler;
-	private MessageBroadcastThreadPoolHandler broadcaster;
-	private boolean peerHasFile;
-	private Node node = Node.getInstance();
-	private BlockingQueue<byte[]> messageQueue;
-	private boolean isPeerProcessInstanceAlive;
-
-	private ConnectionModel activeConnection;
-	private volatile boolean uploadHandshake;
-	private volatile boolean isHandshakeDownloaded;
+	private FileHandler file_id;
+	private MessageBroadcastThreadPoolHandler msg_thread_broadcast;
+	private boolean hasFile;
+	private BitSet peer_bit;
+	
+	private ConnectionModel link_active;
+	private volatile boolean upload;
+	private volatile boolean download;
 	ClientOutput clientOutput;
+	private Node node = Node.getInstance();
+	private BlockingQueue<byte[]> msg_link;
+	private boolean is_active;
+
 
 	public PeerProcess(ConnectionModel connection) {
-		activeConnection = connection;
-		messageQueue = new LinkedBlockingQueue<>();
-		isPeerProcessInstanceAlive = true;
-		fileHandler = FileHandler.getInstance();
-		broadcaster = MessageBroadcastThreadPoolHandler.getInstance();
-		peerBitset = new BitSet(CommonProperties.numberOfChunks);
+		link_active = connection;
+		msg_link = new LinkedBlockingQueue<>();
+		is_active = true;
+		file_id = FileHandler.getInstance();
+		msg_thread_broadcast = MessageBroadcastThreadPoolHandler.getInstance();
+		peer_bit = new BitSet(CommonProperties.numberOfChunks);
 	}
 
-	public void setUpload(ClientOutput value) {
+	public void transfer(ClientOutput value) {
 		clientOutput = value;
-		if (getUploadHandshake()) {
-			broadcaster.addMessage(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+		if (get_handshake()) {
+			msg_thread_broadcast.addMessage(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 	}
 
 	@Override
 	public void run() {
-		while (isPeerProcessInstanceAlive) {
+		while (is_active) {
 			try {
-				byte[] messageItem = messageQueue.take();
-				processMessage(messageItem);
+				byte[] messageItem = msg_link.take();
+				message_task(messageItem);
 			}
 			catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println(e);;
 			}
 		}
 	}
 
-	public synchronized void addPayload(byte[] payload) {
+	public synchronized void add_Data(byte[] data) {
 		try {
-			messageQueue.put(payload);
+			msg_link.put(data);
 		}
 		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public synchronized BitSet getPeerBitSet() {
-		return peerBitset;
+	public synchronized BitSet getBitSetOfPeer() {
+		return peer_bit;
 	}
 
 	public synchronized void sendHandshake() {
-		setUploadHandshake();
+		setHandshake();
 	}
 
-	public synchronized void setUploadHandshake() {
-		uploadHandshake = true;
+	public synchronized void setHandshake() {
+		upload = true;
 	}
 
-	public synchronized boolean getUploadHandshake() {
-		return uploadHandshake;
+	public synchronized boolean get_handshake() {
+		return upload;
 	}
 
 
-	public synchronized void setPeerBitset(byte[] payload) {
-		for (int i = 1; i < payload.length; i++) {
-			if (payload[i] == 1) {
-				peerBitset.set(i - 1);
+	public synchronized void setBitsetOfPeer(byte[] data) {
+		for (int i = 1; i < data.length; i++) {
+			if (data[i] == 1) {
+				peer_bit.set(i - 1);
 			}
 		}
-		if (peerBitset.cardinality() == CommonProperties.numberOfChunks) {
-			peerHasFile = true;
-			ConnectionController.getInstance().addToPeersWithFullFile(remotePeerId);
+		if (peer_bit.cardinality() == CommonProperties.numberOfChunks) {
+			hasFile = true;
+			ConnectionController.getInstance().addToPeersWithFullFile(peer_id);
 		}
 	}
 
-	public synchronized void updatePeerBitset(int index) {
-		peerBitset.set(index);
-		if (peerBitset.cardinality() == CommonProperties.numberOfChunks) {
-			ConnectionController.getInstance().addToPeersWithFullFile(remotePeerId);
-			peerHasFile = true;
+	public synchronized void updateBitsetOfPeer(int index) {
+		peer_bit.set(index);
+		if (peer_bit.cardinality() == CommonProperties.numberOfChunks) {
+			ConnectionController.getInstance().addToPeersWithFullFile(peer_id);
+			hasFile = true;
 		}
 	}
 
 	private MessageModel.Type processChoke()
 	{
-		LoggerHandler.getInstance().choked(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
-		activeConnection.removeRequestedPiece();
+		LoggerHandler.getInstance().choked(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId());
+		link_active.removeRequestedPiece();
 		return null;
 	}
 
 	private MessageModel.Type processInterested(){
 		LoggerHandler.getInstance().receiveInterested(CommonProperties.getTime(), BitTorrentMainController.peerId,
-				activeConnection.getRemotePeerId());
-		activeConnection.processAcceptedPeerConnections();
+		link_active.getRemotePeerId());
+		link_active.processAcceptedPeerConnections();
 		return null;
 	}
 
 	private MessageModel.Type processNotInterested(){
 		LoggerHandler.getInstance().receiveNotInterested(CommonProperties.getTime(), BitTorrentMainController.peerId,
-				activeConnection.getRemotePeerId());
-		activeConnection.processRejectedPeerConnections();
+		link_active.getRemotePeerId());
+		link_active.processRejectedPeerConnections();
 		return null;
 	}
 
@@ -141,9 +142,9 @@ public class PeerProcess extends Thread {
         }
         return b;
     }
-	protected void processMessage(byte[] message) {
+	protected void message_task(byte[] message) {
 		try {
-			MessageModel.Type messageType = getMessageType(message[0]);
+			MessageModel.Type messageType = determineType(message[0]);
 		
 		MessageModel.Type responseMessageType = null;
 		int fileChunkIndex = Integer.MIN_VALUE;
@@ -194,9 +195,9 @@ public class PeerProcess extends Thread {
 			case CHOKE:	responseMessageType = processChoke();
 			break;
 		case UNCHOKE:
-			LoggerHandler.getInstance().unchoked(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId());
+			LoggerHandler.getInstance().unchoked(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId());
 			responseMessageType = MessageModel.Type.REQUEST;
-			fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
+			fileChunkIndex = file_id.getRequestPieceIndex(link_active);
 			break;
 		case INTERESTED: responseMessageType = processInterested();
 			break;
@@ -204,13 +205,13 @@ public class PeerProcess extends Thread {
 			break;
 		case HAVE:
 			fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
-			LoggerHandler.getInstance().receiveHave(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
+			LoggerHandler.getInstance().receiveHave(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId(),
 					fileChunkIndex);
-			updatePeerBitset(fileChunkIndex);
+			updateBitsetOfPeer(fileChunkIndex);
 			responseMessageType = getInterestedNotInterested();
 			break;
 		case BITFIELD:
-			setPeerBitset(message);
+			setBitsetOfPeer(message);
 			responseMessageType = getInterestedNotInterested();
 			break;
 		case REQUEST:
@@ -230,7 +231,7 @@ public class PeerProcess extends Thread {
 	}
 
 		if (null != responseMessageType) {
-			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			msg_thread_broadcast.addMessage(new Object[] { link_active, responseMessageType, fileChunkIndex });
 		}
 	}
 	catch(Exception e){
@@ -242,22 +243,22 @@ public class PeerProcess extends Thread {
 	private void processPiece(int fileChunkIndex, byte[] message, MessageModel.Type responseMessageType,
 							  MessageModel.Type messageType){
 		fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
-		activeConnection.incrementTotalBytesDownloaded(message.length);
-		fileHandler.setPiece(Arrays.copyOfRange(message, 1, message.length));
-		LoggerHandler.getInstance().downloadingPiece(CommonProperties.getTime(), BitTorrentMainController.peerId, activeConnection.getRemotePeerId(),
-				fileChunkIndex, fileHandler.getReceivedFileSize());
+		link_active.incrementTotalBytesDownloaded(message.length);
+		file_id.setPiece(Arrays.copyOfRange(message, 1, message.length));
+		LoggerHandler.getInstance().downloadingPiece(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId(),
+				fileChunkIndex, file_id.getReceivedFileSize());
 		responseMessageType = MessageModel.Type.REQUEST;
-		activeConnection.broadCastHavetoAllRegisteredPeers(fileChunkIndex);
-		fileChunkIndex = fileHandler.getRequestPieceIndex(activeConnection);
+		link_active.broadCastHavetoAllRegisteredPeers(fileChunkIndex);
+		fileChunkIndex = file_id.getRequestPieceIndex(link_active);
 		if (fileChunkIndex == Integer.MIN_VALUE) {
 			LoggerHandler.getInstance().downloadComplete(CommonProperties.getTime(), BitTorrentMainController.peerId);
-			fileHandler.writeToFile(BitTorrentMainController.peerId);
+			file_id.writeToFile(BitTorrentMainController.peerId);
 			messageType = null;
-			isPeerProcessInstanceAlive = false;
+			is_active = false;
 			responseMessageType = null;
 		}
 		if (null != responseMessageType) {
-			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			msg_thread_broadcast.addMessage(new Object[] { link_active, responseMessageType, fileChunkIndex });
 		}
 	}
 
@@ -273,25 +274,25 @@ public class PeerProcess extends Thread {
     }
 
 	private void processHandshake(byte[] message, MessageModel.Type responseMessageType, int fileChunkIndex){
-		remotePeerId = MessageModel.getId(message);
-		activeConnection.setPeerId(remotePeerId);
-		activeConnection.registerConnection();
-		if (!getUploadHandshake()) {
-			setUploadHandshake();
-			LoggerHandler.getInstance().connectionFrom(node.getNetwork().getPeerId(), remotePeerId);
-			broadcaster.addMessage(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+		peer_id=MessageModel.getId(message);
+		link_active.setPeerId(peer_id);
+		link_active.registerConnection();
+		if (!get_handshake()) {
+			setHandshake();
+			LoggerHandler.getInstance().connectionFrom(node.getNetwork().getPeerId(), peer_id);
+			msg_thread_broadcast.addMessage(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
-		if (fileHandler.hasAnyPieces()) {
+		if (file_id.hasAnyPieces()) {
 			responseMessageType = MessageModel.Type.BITFIELD;
 		}
 		if (null != responseMessageType) {
-			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			msg_thread_broadcast.addMessage(new Object[] { link_active, responseMessageType, fileChunkIndex });
 		}
 	}
 
 	private boolean isInterested() {
 		for (int i = 0; i < CommonProperties.numberOfChunks; i++) {
-			if (peerBitset.get(i) && !fileHandler.isPieceAvailable(i)) {
+			if (peer_bit.get(i) && !file_id.isPieceAvailable(i)) {
 				return true;
 			}
 		}
@@ -299,7 +300,7 @@ public class PeerProcess extends Thread {
 	}
 
 	public boolean hasFile() {
-		return peerHasFile;
+		return hasFile;
 	}
 
 	private MessageModel.Type getInterestedNotInterested() {
@@ -309,21 +310,21 @@ public class PeerProcess extends Thread {
 		return MessageModel.Type.NOTINTERESTED;
 	}
 
-	private MessageModel.Type getMessageType(byte type) {
+	private MessageModel.Type determineType(byte type) {
 		MessageController messageManager = MessageController.getInstance();
-		if (!isHandshakeDownloaded()) {
-			setHandshakeDownloaded();
+		if (!isDownloaded()) {
+			set_handshake();
 			return MessageModel.Type.HANDSHAKE;
 		}
 		return messageManager.getType(type);
 	}
 
-	private boolean isHandshakeDownloaded() {
-		return isHandshakeDownloaded;
+	private boolean isDownloaded() {
+		return download;
 	}
 
-	private void setHandshakeDownloaded() {
-		isHandshakeDownloaded = true;
+	private void set_handshake() {
+		download = true;
 	}
 	
 }

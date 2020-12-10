@@ -210,7 +210,7 @@ public class FileHandler extends Thread {
 			System.out.println("File received");
 			return Integer.MIN_VALUE;
 		}
-		BitSet peerBitset = conn.getPeerBitSet();
+		BitSet peerBitset = conn.getBitSetOfPeer();
 		int numberOfPieces = CommonProperties.numberOfChunks;
 		BitSet peerClone = (BitSet) peerBitset.clone();
 		BitSet myClone = (BitSet) shradedFile.clone();
