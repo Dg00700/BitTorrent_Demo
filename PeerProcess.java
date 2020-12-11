@@ -48,7 +48,7 @@ public class PeerProcess extends Thread {
 	public void transfer(ClientOutput value) {
 		clientOutput = value;
 		if (get_handshake()) {
-			msg_thread_broadcast.addMessage(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 	}
 
@@ -231,7 +231,7 @@ public class PeerProcess extends Thread {
 	}
 
 		if (null != responseMessageType) {
-			msg_thread_broadcast.addMessage(new Object[] { link_active, responseMessageType, fileChunkIndex });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, responseMessageType, fileChunkIndex });
 		}
 	}
 	catch(Exception e){
@@ -258,7 +258,7 @@ public class PeerProcess extends Thread {
 			responseMessageType = null;
 		}
 		if (null != responseMessageType) {
-			msg_thread_broadcast.addMessage(new Object[] { link_active, responseMessageType, fileChunkIndex });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, responseMessageType, fileChunkIndex });
 		}
 	}
 
@@ -280,13 +280,13 @@ public class PeerProcess extends Thread {
 		if (!get_handshake()) {
 			setHandshake();
 			LoggerHandler.getInstance().connectionFrom(node.getNetwork().getPeerId(), peer_id);
-			msg_thread_broadcast.addMessage(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 		if (file_id.hasAnyPieces()) {
 			responseMessageType = MessageModel.Type.BITFIELD;
 		}
 		if (null != responseMessageType) {
-			msg_thread_broadcast.addMessage(new Object[] { link_active, responseMessageType, fileChunkIndex });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, responseMessageType, fileChunkIndex });
 		}
 	}
 

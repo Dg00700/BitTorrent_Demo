@@ -71,14 +71,14 @@ public class ConnectionController {
 				if (peersWithFullFile.size() == totalNumberofPeers - 1 && fileHandler.isCompleteFile()) {
 					System.exit(0);
 				}
-				if (preferredNeighbors.size() > 1) {
+				if (preferredNeighbors.size() > 0) {
 					ConnectionModel notPrefNeighborConnection = preferredNeighbors.poll();
 					notPrefNeighborConnection.setDownloadedbytes(0);
 					for (ConnectionModel connT : preferredNeighbors) {
 						connT.setDownloadedbytes(0);
 					}
 					broadcaster.generateMsg(new Object[] { notPrefNeighborConnection, MessageModel.Type.CHOKE, Integer.MIN_VALUE });
-					LoggerHandler.getInstance().logChangePreferredNeighbors(CommonProperties.getTime(), BitTorrentMainController.peerId,
+					LoggerHandler.getInstance().changePreferredNeighbors(CommonProperties.getTime(), BitTorrentMainController.peerId,
 							preferredNeighbors);
 				}
 			}
@@ -94,7 +94,7 @@ public class ConnectionController {
 					if (!notInterested.contains(connectionInstance) && !preferredNeighbors.contains(connectionInstance) && !connectionInstance.hasFile()) {
 						broadcaster.generateMsg(new Object[] { connectionInstance, MessageModel.Type.UNCHOKE, Integer.MIN_VALUE });
 						preferredNeighbors.add(connectionInstance);
-						LoggerHandler.getInstance().logOptimisticallyUnchokeNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId,
+						LoggerHandler.getInstance().changeOptimisticallyUnchokeNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId,
 								connectionInstance.getRemotePeerId());
 					}
 				}
@@ -172,7 +172,7 @@ class ConnectionModel {
 	}
 
 	private void setup(ClientOutput clientOutput){
-		peerProcess.setUpload(clientOutput);
+		peerProcess.transfer(clientOutput);
 		peerProcess.start();
 	}
 
@@ -185,9 +185,13 @@ class ConnectionModel {
 		Thread clientThread = new Thread(client);
 		serverThread.start();
 		clientThread.start();
-        LoggerHandler.getInstance().logTcpConnectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
+        LoggerHandler.getInstance().connectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
 		peerProcess.sendHandshake();
-		peerProcess.setUpload(clientOutput);
+        LoggerHandler.getInstance().handshakeFrom(Node.getInstance().getNetwork().getPeerId(), peerId);
+
+		peerProcess.transfer(clientOutput);
+        LoggerHandler.getInstance().bitfieldFrom(Node.getInstance().getNetwork().getPeerId(), peerId);
+
 		peerProcess.start();
 	}
 	public synchronized void sendMessage(int messageLength, byte[] payload) {
@@ -235,8 +239,8 @@ class ConnectionModel {
 		FileHandler.getInstance().removeRequestedPiece(this);
 	}
 
-	public synchronized BitSet getPeerBitSet() {
-		return peerProcess.getPeerBitSet();
+	public synchronized BitSet getBitSetOfPeer() {
+		return peerProcess.getBitSetOfPeer();
 	}
 
 	public synchronized boolean hasFile() {
