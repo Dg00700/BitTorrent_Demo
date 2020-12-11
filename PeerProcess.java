@@ -49,7 +49,7 @@ public class PeerProcess extends Thread {
 	public void setUpload(ClientOutput value) {
 		clientOutput = value;
 		if (getUploadHandshake()) {
-			broadcaster.addMessage(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			broadcaster.generateMsg(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 	}
 
@@ -192,7 +192,7 @@ public class PeerProcess extends Thread {
 			processHandshake(message,responseMessageType,fileChunkIndex);
 		}
 		if (null != responseMessageType) {
-			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			broadcaster.generateMsg(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}
 	}
 	catch(Exception e){
@@ -219,7 +219,7 @@ public class PeerProcess extends Thread {
 			responseMessageType = null;
 		}
 		if (null != responseMessageType) {
-			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			broadcaster.generateMsg(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}
 	}
 
@@ -241,13 +241,13 @@ public class PeerProcess extends Thread {
 		if (!getUploadHandshake()) {
 			setUploadHandshake();
 			LoggerHandler.getInstance().logTcpConnectionFrom(node.getNetwork().getPeerId(), remotePeerId);
-			broadcaster.addMessage(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			broadcaster.generateMsg(new Object[] { activeConnection, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 		if (fileHandler.hasAnyPieces()) {
 			responseMessageType = MessageModel.Type.BITFIELD;
 		}
 		if (null != responseMessageType) {
-			broadcaster.addMessage(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
+			broadcaster.generateMsg(new Object[] { activeConnection, responseMessageType, fileChunkIndex });
 		}
 	}
 

@@ -77,7 +77,7 @@ public class ConnectionController {
 					for (ConnectionModel connT : preferredNeighbors) {
 						connT.setDownloadedbytes(0);
 					}
-					broadcaster.addMessage(new Object[] { notPrefNeighborConnection, MessageModel.Type.CHOKE, Integer.MIN_VALUE });
+					broadcaster.generateMsg(new Object[] { notPrefNeighborConnection, MessageModel.Type.CHOKE, Integer.MIN_VALUE });
 					LoggerHandler.getInstance().logChangePreferredNeighbors(CommonProperties.getTime(), BitTorrentMainController.peerId,
 							preferredNeighbors);
 				}
@@ -92,7 +92,7 @@ public class ConnectionController {
 			public void run() {
 				for (ConnectionModel connectionInstance : availableConnections) {
 					if (!notInterested.contains(connectionInstance) && !preferredNeighbors.contains(connectionInstance) && !connectionInstance.hasFile()) {
-						broadcaster.addMessage(new Object[] { connectionInstance, MessageModel.Type.UNCHOKE, Integer.MIN_VALUE });
+						broadcaster.generateMsg(new Object[] { connectionInstance, MessageModel.Type.UNCHOKE, Integer.MIN_VALUE });
 						preferredNeighbors.add(connectionInstance);
 						LoggerHandler.getInstance().logOptimisticallyUnchokeNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId,
 								connectionInstance.getRemotePeerId());
@@ -108,7 +108,7 @@ public class ConnectionController {
 	public synchronized void broadCastHavetoAllRegisteredPeers(int fileChunkIndex) {
 		if(availableConnections!=null) {
 			for (ConnectionModel connectionInstance : availableConnections) {
-				broadcaster.addMessage(new Object[]{
+				broadcaster.generateMsg(new Object[]{
 						connectionInstance, MessageModel.Type.HAVE, fileChunkIndex
 				});
 			}
@@ -120,7 +120,7 @@ public class ConnectionController {
 		if (preferredNeighbors.size() <= numberofPrefferedNeighor && !preferredNeighbors.contains(connectionInstance)) {
 			connectionInstance.setDownloadedbytes(0);
 			preferredNeighbors.add(connectionInstance);
-			broadcaster.addMessage(new Object[] {
+			broadcaster.generateMsg(new Object[] {
 					connectionInstance,
 					MessageModel.Type.UNCHOKE,
 					Integer.MIN_VALUE
