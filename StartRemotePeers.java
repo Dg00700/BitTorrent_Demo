@@ -15,12 +15,7 @@ public class StartRemotePeers {
             while ((st = in.readLine()) != null) {
 
                 String[] tokens = st.split("\\s+");
-                // System.out.println("tokens begin ----");
-                // for (int x = 0; x < tokens.length; x++) {
-                //     System.out.println(tokens[x]);
-                // }
-                // System.out.println("tokens end ----");
-
+                
                 peerInfoVector.addElement(new RemotePeerInfo(tokens[0], tokens[1], tokens[2],i1));
                 i1++;
             }
@@ -52,7 +47,7 @@ public class StartRemotePeers {
 				
 				System.out.println("Start remote peer " + pInfo.peerId +  " at " + pInfo.peerAddress );
 				
-			    Runtime.getRuntime().exec("ssh " + pInfo.peerAddress + " cd " + path + "; java BitTorrentMainController " + pInfo.peerId);
+			    Runtime.getRuntime().exec("ssh " + pInfo.peerAddress + " cd " + path + "; java P2PInitializer " + pInfo.peerId);
 				
 			}		
 			//System.out.println("Starting all remote peers has done." );

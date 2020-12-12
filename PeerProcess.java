@@ -23,32 +23,32 @@ public class PeerProcess extends Thread {
 	private String peer_id;
 
 	private FileHandler file_id;
-	private MessageBroadcastThreadPoolHandler msg_thread_broadcast;
+	private ThreadController msg_thread_broadcast;
 	private boolean hasFile;
 	private BitSet peer_bit;
 	
-	private ConnectionModel link_active;
+	private ConStructure link_active;
 	private volatile boolean upload;
 	private volatile boolean download;
 	ClientOutput clientOutput;
-	private Node node = Node.getInstance();
+	private PeerSetter node = PeerSetter.getInstance();
 	private BlockingQueue<byte[]> msg_link;
 	private boolean is_active;
 
 
-	public PeerProcess(ConnectionModel connection) {
+	public PeerProcess(ConStructure connection) {
 		link_active = connection;
 		msg_link = new LinkedBlockingQueue<>();
 		is_active = true;
 		file_id = FileHandler.getInstance();
-		msg_thread_broadcast = MessageBroadcastThreadPoolHandler.getInstance();
-		peer_bit = new BitSet(CommonProperties.numberOfChunks);
+		msg_thread_broadcast = ThreadController.getInstance();
+		peer_bit = new BitSet(PeerProperties.numberOfChunks);
 	}
 
 	public void transfer(ClientOutput value) {
 		clientOutput = value;
 		if (get_handshake()) {
-			msg_thread_broadcast.generateMsg(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, MessageBody.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 	}
 
@@ -97,36 +97,36 @@ public class PeerProcess extends Thread {
 				peer_bit.set(i - 1);
 			}
 		}
-		if (peer_bit.cardinality() == CommonProperties.numberOfChunks) {
+		if (peer_bit.cardinality() == PeerProperties.numberOfChunks) {
 			hasFile = true;
-			ConnectionController.getInstance().addToPeersWithFullFile(peer_id);
+			ConnectionHandler.getInstance().addToPeersWithFullFile(peer_id);
 		}
 	}
 
 	public synchronized void updateBitsetOfPeer(int index) {
 		peer_bit.set(index);
-		if (peer_bit.cardinality() == CommonProperties.numberOfChunks) {
-			ConnectionController.getInstance().addToPeersWithFullFile(peer_id);
+		if (peer_bit.cardinality() == PeerProperties.numberOfChunks) {
+			ConnectionHandler.getInstance().addToPeersWithFullFile(peer_id);
 			hasFile = true;
 		}
 	}
 
-	private MessageModel.Type processChoke()
+	private MessageBody.Type processChoke()
 	{
-		LoggerHandler.getInstance().choked(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId());
+		LoggerHandler.getInstance().choked(PeerProperties.getTime(), P2PInitializer.peerId, link_active.getRemotePeerId());
 		link_active.removeRequestedPiece();
 		return null;
 	}
 
-	private MessageModel.Type processInterested(){
-		LoggerHandler.getInstance().receiveInterested(CommonProperties.getTime(), BitTorrentMainController.peerId,
+	private MessageBody.Type processInterested(){
+		LoggerHandler.getInstance().receiveInterested(PeerProperties.getTime(), P2PInitializer.peerId,
 		link_active.getRemotePeerId());
 		link_active.setPeerConnections();
 		return null;
 	}
 
-	private MessageModel.Type processNotInterested(){
-		LoggerHandler.getInstance().receiveNotInterested(CommonProperties.getTime(), BitTorrentMainController.peerId,
+	private MessageBody.Type processNotInterested(){
+		LoggerHandler.getInstance().receiveNotInterested(PeerProperties.getTime(), P2PInitializer.peerId,
 		link_active.getRemotePeerId());
 		link_active.peerConnRejected();
 		return null;
@@ -144,39 +144,39 @@ public class PeerProcess extends Thread {
     }
 	protected void message_task(byte[] message) {
 		try {
-			MessageModel.Type messageType = determineType(message[0]);
+			MessageBody.Type messageType = determineType(message[0]);
 		
-		MessageModel.Type responseMessageType = null;
+			MessageBody.Type responseMessageType = null;
 		int fileChunkIndex = Integer.MIN_VALUE;
 		
 		System.out.println("Received message: " + messageType);
-		 if(messageType==MessageModel.Type.CHOKE){
+		 if(messageType==MessageBody.Type.CHOKE){
 			responseMessageType=processChoke();
 		}
-		else if(messageType==MessageModel.Type.UNCHOKE){
-			LoggerHandler.getInstance().unchoked(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId());
-			responseMessageType = MessageModel.Type.REQUEST;
+		else if(messageType==MessageBody.Type.UNCHOKE){
+			LoggerHandler.getInstance().unchoked(PeerProperties.getTime(), P2PInitializer.peerId, link_active.getRemotePeerId());
+			responseMessageType = MessageBody.Type.REQUEST;
 			fileChunkIndex = file_id.receivedRequestedPiece(link_active);
 		}
-		else if(messageType==MessageModel.Type.INTERESTED){
+		else if(messageType==MessageBody.Type.INTERESTED){
 			responseMessageType = processInterested();
 		}
-		else if(messageType==MessageModel.Type.NOTINTERESTED){
+		else if(messageType==MessageBody.Type.NOTINTERESTED){
 			responseMessageType = processNotInterested();
 		}
-		else if(messageType==MessageModel.Type.HAVE){
+		else if(messageType==MessageBody.Type.HAVE){
 			fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
-				LoggerHandler.getInstance().receiveHave(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId(),
+				LoggerHandler.getInstance().receiveHave(PeerProperties.getTime(), P2PInitializer.peerId, link_active.getRemotePeerId(),
 						fileChunkIndex);
 				updateBitsetOfPeer(fileChunkIndex);
 				responseMessageType = getInterestedNotInterested();
 		}
-		else if(messageType==MessageModel.Type.BITFIELD){
+		else if(messageType==MessageBody.Type.BITFIELD){
 			setBitsetOfPeer(message);
 				responseMessageType = getInterestedNotInterested();
 		}
-		else if(messageType==MessageModel.Type.REQUEST){
-			responseMessageType = MessageModel.Type.PIECE;
+		else if(messageType==MessageBody.Type.REQUEST){
+			responseMessageType = MessageBody.Type.PIECE;
 				byte[] content = new byte[4];
 				System.arraycopy(message, 1, content, 0, 4);
 				fileChunkIndex = ByteBuffer.wrap(content).getInt();
@@ -185,10 +185,10 @@ public class PeerProcess extends Thread {
 					responseMessageType = null;
 				}
 		}
-		else if(messageType==MessageModel.Type.PIECE){
+		else if(messageType==MessageBody.Type.PIECE){
 			processPiece(fileChunkIndex,message,responseMessageType,messageType);
 		}
-		else if(messageType==MessageModel.Type.HANDSHAKE){
+		else if(messageType==MessageBody.Type.HANDSHAKE){
 			processHandshake(message,responseMessageType,fileChunkIndex);
 		}
 		
@@ -202,19 +202,19 @@ public class PeerProcess extends Thread {
 	
 	}
 
-	private void processPiece(int fileChunkIndex, byte[] message, MessageModel.Type responseMessageType,
-							  MessageModel.Type messageType){
+	private void processPiece(int fileChunkIndex, byte[] message, MessageBody.Type responseMessageType,
+	MessageBody.Type messageType){
 		fileChunkIndex = ByteBuffer.wrap(message, 1, 4).getInt();
 		link_active.incrementTotalBytesDownloaded(message.length);
 		file_id.setFilePiece(Arrays.copyOfRange(message, 1, message.length));
-		LoggerHandler.getInstance().downloadingPiece(CommonProperties.getTime(), BitTorrentMainController.peerId, link_active.getRemotePeerId(),
+		LoggerHandler.getInstance().downloadingPiece(PeerProperties.getTime(), P2PInitializer.peerId, link_active.getRemotePeerId(),
 				fileChunkIndex, file_id.getFileLength());
-		responseMessageType = MessageModel.Type.REQUEST;
+		responseMessageType = MessageBody.Type.REQUEST;
 		link_active.PrintHaveforAllRegiPeers(fileChunkIndex);
 		fileChunkIndex = file_id.receivedRequestedPiece(link_active);
 		if (fileChunkIndex == Integer.MIN_VALUE) {
-			LoggerHandler.getInstance().downloadComplete(CommonProperties.getTime(), BitTorrentMainController.peerId);
-			file_id.writeToFile(BitTorrentMainController.peerId);
+			LoggerHandler.getInstance().downloadComplete(PeerProperties.getTime(), P2PInitializer.peerId);
+			file_id.writeToFile(P2PInitializer.peerId);
 			messageType = null;
 			is_active = false;
 			responseMessageType = null;
@@ -238,17 +238,17 @@ public class PeerProcess extends Thread {
 	}
 
 
-	private void processHandshake(byte[] message, MessageModel.Type responseMessageType, int fileChunkIndex){
-		peer_id=MessageModel.getId(message);
+	private void processHandshake(byte[] message, MessageBody.Type responseMessageType, int fileChunkIndex){
+		peer_id=MessageBody.getId(message);
 		link_active.setPeerId(peer_id);
 		link_active.setConnection();
 		if (!get_handshake()) {
 			setHandshake();
 			LoggerHandler.getInstance().connectionFrom(node.getNetwork().getPeerId(), peer_id);
-			msg_thread_broadcast.generateMsg(new Object[] { link_active, MessageModel.Type.HANDSHAKE, Integer.MIN_VALUE });
+			msg_thread_broadcast.generateMsg(new Object[] { link_active, MessageBody.Type.HANDSHAKE, Integer.MIN_VALUE });
 		}
 		if (file_id.hasAnyPieces()) {
-			responseMessageType = MessageModel.Type.BITFIELD;
+			responseMessageType = MessageBody.Type.BITFIELD;
 		}
 		if (null != responseMessageType) {
 			msg_thread_broadcast.generateMsg(new Object[] { link_active, responseMessageType, fileChunkIndex });
@@ -256,7 +256,7 @@ public class PeerProcess extends Thread {
 	}
 
 	private boolean isInterested() {
-		for (int i = 0; i < CommonProperties.numberOfChunks; i++) {
+		for (int i = 0; i < PeerProperties.numberOfChunks; i++) {
 			if (peer_bit.get(i) && !file_id.is_available(i)) {
 				return true;
 			}
@@ -275,18 +275,18 @@ public class PeerProcess extends Thread {
 		return hasFile;
 	}
 
-	private MessageModel.Type getInterestedNotInterested() {
+	private MessageBody.Type getInterestedNotInterested() {
 		if (isInterested()) {
-			return MessageModel.Type.INTERESTED;
+			return MessageBody.Type.INTERESTED;
 		}
-		return MessageModel.Type.NOTINTERESTED;
+		return MessageBody.Type.NOTINTERESTED;
 	}
 
-	private MessageModel.Type determineType(byte type) {
-		MessageController messageManager = MessageController.getInstance();
+	private MessageBody.Type determineType(byte type) {
+		MessageHandler messageManager = MessageHandler.getInstance();
 		if (!isDownloaded()) {
 			set_handshake();
-			return MessageModel.Type.HANDSHAKE;
+			return MessageBody.Type.HANDSHAKE;
 		}
 		return messageManager.getType(type);
 	}
