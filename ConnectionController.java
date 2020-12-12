@@ -74,7 +74,7 @@ public class ConnectionController {
 			return new HashSet<ConnectionModel>();
 	}
 
-	private int totalPeernum = CommonProperties.numberOfPeers();
+	private int totalPeernum = CommonProperties.getnumOfPeers();
 	private int getunchokingTime = CommonProperties.numberOfPreferredNeighbors;
 	//To check
 	private void ChokePeer(){
@@ -180,7 +180,6 @@ class ConnectionModel {
 	}
 
 	
-
 	public ConnectionModel(Socket peerSocket, String peerId) {
 		this.peerSocket = peerSocket;
 		pProcess = new PeerProcess(this);

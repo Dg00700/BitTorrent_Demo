@@ -81,11 +81,20 @@ class CommonProperties {
 		return peerList;
 	}
 
-	public static int numberOfPeers() {
+	public static int getnumOfPeers() {
 		return peerList.size();
 	}
 
-	public static final String NUMBER_OF_PREFERRED_NEIGHBORS = "NumberOfPreferredNeighbors";
+	public static boolean checkpeers(){
+		if(peerList.size()!=0)
+		return true;
+		else
+		return false;
+	}
+
+	
+
+	public static final String numprefNeighbor = "NumberOfPreferredNeighbors";
 	public static final String UNCHOKING_INTERVAL = "UnchokingInterval";
 	public static final String OPTIMISTIC_UNCHOKING_INTERVAL = "OptimisticUnchokingInterval";
 	public static final String FILENAME = "FileName";
@@ -98,7 +107,7 @@ class CommonProperties {
 	public static final String PEER_LOG_FILE_EXTENSION = ".log";
 	public static final String PEER_LOG_FILE_PATH = System.getProperty("user.dir") + File.separatorChar + "project/log_peer_";
 
-
+	
 
 
 	public static void calculateNumberOfPieces() {
@@ -187,7 +196,7 @@ class CommonProperties {
 		CommonProperties.fileName = properties.get(CommonProperties.FILENAME).toString();
 		CommonProperties.fileSize = Long.parseLong(properties.get(CommonProperties.FILESIZE).toString());
 		CommonProperties.setNumberOfPreferredNeighbors(
-				Integer.parseInt(properties.get(CommonProperties.NUMBER_OF_PREFERRED_NEIGHBORS).toString()));
+				Integer.parseInt(properties.get(CommonProperties.numprefNeighbor).toString()));
 		CommonProperties.optimisticUnchokingInterval = 
 				Integer.parseInt(properties.get(CommonProperties.OPTIMISTIC_UNCHOKING_INTERVAL).toString());
 		CommonProperties.pieceSize = Integer.parseInt(properties.getProperty(CommonProperties.PIECESIZE).toString());
