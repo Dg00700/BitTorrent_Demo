@@ -153,11 +153,6 @@ public class FileHandler extends Thread {
 		return shradedFile.nextSetBit(0) != -1;
 	}
 
-	public synchronized void addRequestedPiece(ConnectionModel connection, int pieceIndex) {
-		requestedChunks.put(connection, pieceIndex);
-
-	}
-
 	public synchronized void removeRequestedPiece(ConnectionModel connection) {
 		requestedChunks.remove(connection);
 	}

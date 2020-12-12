@@ -32,7 +32,7 @@ public class ConnectionController {
 	private ConnectionController() {
 		nodesNotInterestedinstance = new HashSet<>();
 		pref_Neighbors_queue = new PriorityQueue<>(totalPrefNeighornum + 1,
-				(a, b) -> (int) a.getBytesDownloaded() - (int) b.getBytesDownloaded());
+				(a, b) -> (int) a.getDownloadedData() - (int) b.getDownloadedData());
 		msgtransmitter = MessageBroadcastThreadPoolHandler.getInstance();
 		fhandler = FileHandler.getInstance();
 		availableNodes = new HashSet<>();
@@ -151,33 +151,27 @@ public class ConnectionController {
 class ConnectionModel {
 
 	private ConnectionController connectionController = ConnectionController.getInstance();
-	ClientOutput clientOutput;
-	Client client;
-	PeerProcess peerProcess;
-	double bytesDownloaded;
-	Socket peerSocket;
-	String remotePeerId;
-	boolean isConnectionChoked;
-
-
-	public double getBytesDownloaded() {
-		return bytesDownloaded;
-	}
-
-	protected ClientOutput getServerInstance() {
-		return clientOutput;
-	}
-
+	double Downloaded_Data;
 	public synchronized void incrementTotalBytesDownloaded(long value) {
-		bytesDownloaded += value;
+		Downloaded_Data += value;
 	}
-
-
-	public ConnectionModel(Socket peerSocket) {
-		this.peerSocket = peerSocket;
-		peerProcess = new PeerProcess(this);
-		clientOutput = new ClientOutput(peerSocket, peerProcess);
-		client = new Client(peerSocket, peerProcess);
+	public double getDownloadedData() {
+		return Downloaded_Data;
+	}
+	PeerProcess pProcess;
+	private void setup(ClientOutput clientOutput){
+		pProcess.transfer(clientOutput);
+		pProcess.start();
+	}
+	Client client;
+	Socket peerSocket;
+	
+	ClientOutput clientOutput;
+	public ConnectionModel(Socket nodeSocket) {
+		this.peerSocket = nodeSocket;
+		pProcess = new PeerProcess(this);
+		clientOutput = new ClientOutput(nodeSocket, pProcess);
+		client = new Client(nodeSocket, pProcess);
 		Thread serverThread = new Thread(clientOutput);
 		Thread clientThread = new Thread(client);
 		serverThread.start();
@@ -185,28 +179,25 @@ class ConnectionModel {
 		setup(clientOutput);
 	}
 
-	private void setup(ClientOutput clientOutput){
-		peerProcess.transfer(clientOutput);
-		peerProcess.start();
-	}
+	
 
 	public ConnectionModel(Socket peerSocket, String peerId) {
 		this.peerSocket = peerSocket;
-		peerProcess = new PeerProcess(this);
-		clientOutput = new ClientOutput(peerSocket, peerId, peerProcess);
-		client = new Client(peerSocket,  peerProcess);
+		pProcess = new PeerProcess(this);
+		clientOutput = new ClientOutput(peerSocket, peerId, pProcess);
+		client = new Client(peerSocket,  pProcess);
 		Thread serverThread = new Thread(clientOutput);
 		Thread clientThread = new Thread(client);
 		serverThread.start();
 		clientThread.start();
         LoggerHandler.getInstance().connectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
-		peerProcess.sendHandshake();
+		pProcess.sendHandshake();
         LoggerHandler.getInstance().handshakeFrom(Node.getInstance().getNetwork().getPeerId(), peerId);
 
-		peerProcess.transfer(clientOutput);
+		pProcess.transfer(clientOutput);
         LoggerHandler.getInstance().bitfieldFrom(Node.getInstance().getNetwork().getPeerId(), peerId);
 
-		peerProcess.start();
+		pProcess.start();
 	}
 	public synchronized void sendMessage(int messageLength, byte[] payload) {
 		clientOutput.addMessage(messageLength, payload);
@@ -220,7 +211,7 @@ class ConnectionModel {
 			e.printStackTrace();
 		}
 	}
-
+	String remotePeerId;
 	public synchronized String getRemotePeerId() {
 		return remotePeerId;
 	}
@@ -229,9 +220,7 @@ class ConnectionModel {
 		connectionController.PrintHaveforAllRegiPeers(fileChunkIndex);
 	}
 
-	protected synchronized void addRequestedPiece(int pieceIndex) {
-		FileHandler.getInstance().addRequestedPiece(this, pieceIndex);
-	}
+	
 
 	public synchronized void setPeerConnections() {
 		connectionController.addValidConnection(this,remotePeerId);
@@ -242,7 +231,7 @@ class ConnectionModel {
 	}
 
 	public synchronized void setDownloadedbytes(int bDownloaded) {
-		bytesDownloaded = bDownloaded;
+		Downloaded_Data = bDownloaded;
 	}
 
 	public void setPeerId(String value) {
@@ -254,11 +243,11 @@ class ConnectionModel {
 	}
 
 	public synchronized BitSet getBitSetOfPeer() {
-		return peerProcess.getBitSetOfPeer();
+		return pProcess.getBitSetOfPeer();
 	}
 
 	public synchronized boolean hasFile() {
-		return peerProcess.hasFile();
+		return pProcess.hasFile();
 	}
 
 	public synchronized void setConnection() {
