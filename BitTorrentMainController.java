@@ -81,6 +81,12 @@ class CommonProperties {
 		return peerList;
 	}
 
+	public static boolean checkPeers(){
+		if(peerList.size()!=0)
+		return true;
+		return false;
+	}
+
 	public static int numberOfPeers() {
 		return peerList.size();
 	}
