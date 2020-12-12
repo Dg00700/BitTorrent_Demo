@@ -262,7 +262,7 @@ class Node {
 			socket = new ServerSocket(networkModel.port);
 			while (!didEveryoneReceiveTheFile) {
 				Socket peerSocket = socket.accept();
-				connectionController.createConnection(peerSocket);
+				connectionController.initiateConnection(peerSocket);
 			}
 		}
 		catch (Exception e) {
@@ -294,7 +294,7 @@ class Node {
 						String peerHost = peerInfo.hostName;
 						try {
 							Socket clientSocket = new Socket(peerHost, peerPort);
-							connectionController.createConnection(clientSocket, peerInfo.getPeerId());
+							connectionController.startPeerConnection(clientSocket, peerInfo.getPeerId());
 							Thread.sleep(300);
 						} catch (Exception e) {
 							e.printStackTrace();

@@ -56,26 +56,20 @@ public class LoggerHandler {
 	public void handshakeFrom(String peerFrom, String peerTo) {
 		String msg=CommonProperties.getTime() + "Building HANDSHAKE from " + peerFrom + " to "+ peerTo + ".";
 		writeToFile(msg);
-		// StringBuffer log = new StringBuffer();
-		// log.append(CommonProperties.getTime() + "Peer " + peerFrom + " is connected from Peer " + peerTo + ".");
-		// writeToFile(log.toString() );
+		
 	}
 
 	public void bitfieldFrom(String peerFrom, String peerTo) {
 		String msg=CommonProperties.getTime() + "Exchanging BITFIELD message from " + peerFrom + " to "+ peerTo + ".";
 		writeToFile(msg);
-		// StringBuffer log = new StringBuffer();
-		// log.append(CommonProperties.getTime() + "Peer " + peerFrom + " is connected from Peer " + peerTo + ".");
-		// writeToFile(log.toString());
+		
 	}
 
 
 	public void connectionFrom(String peerFrom, String peerTo) {
 		String msg=CommonProperties.getTime() + "Peer " + peerFrom + " is connected from Peer " + peerTo + ".";
 		writeToFile(msg);
-		// StringBuffer log = new StringBuffer();
-		// log.append(CommonProperties.getTime() + "Peer " + peerFrom + " is connected from Peer " + peerTo + ".");
-		// writeToFile(log.toString() + ".");
+		
 	}
 
 	public void changePreferredNeighbors(String timestamp, String peerId, PriorityQueue<ConnectionModel> peers) {
@@ -100,25 +94,18 @@ public class LoggerHandler {
 	public void requestFrom(String peer) {
 		String msg=CommonProperties.getTime() +  "REQUEST to peer " + peer + ".";
 		writeToFile(msg);
-		// StringBuffer log = new StringBuffer();
-		// log.append(timestamp + "Peer " + source + " has the optimistically unchoked neighbor " + unchokedNeighbor + ".");
-		// writeToFile(log.toString() + ".");
+		
 	}
 
 	public void unchoked(String timestamp, String peerId1, String peerId2) {
 		String msg=timestamp + "Peer " + peerId1 + " is unchoked by " + peerId2 + ".";
 		writeToFile(msg);
-		// StringBuffer log = new StringBuffer();
-		// log.append(timestamp + "Peer " + peerId1 + " is unchoked by " + peerId2 + ".");
-		// writeToFile(log.toString() + ".");
+		
 	}
 
 	public void choked(String timestamp, String peerId1, String peerId2) {
 		String msg=timestamp + "Peer " + peerId1 + " is choked by " + peerId2 + ".";
 		writeToFile(msg);
-		// StringBuffer log = new StringBuffer();
-		// log.append(timestamp + "Peer " + peerId1 + " is choked by " + peerId2 + ".");
-		// writeToFile(log.toString() + ".");
 
 	}
 
@@ -127,18 +114,12 @@ public class LoggerHandler {
 	
 
 	public void receiveInterested(String timestamp, String to, String from) {
-		// StringBuffer log = new StringBuffer();
-		// log.append(timestamp + "Peer " + to + " received the 'interested' message from " + from + ".");
-		// writeToFile(log.toString() + ".");
 		String msg=timestamp + "Peer " + to + " received the 'interested' message from " + from + ".";
 		writeToFile(msg);
 	}
 
 
 	public void receiveNotInterested(String timestamp, String to, String from) {
-		// StringBuffer log = new StringBuffer();
-		// log.append(':'+" Peer "+to+" has downloaded the piece from "+ from +".");
-		// writeToFile(log.toString() + ".");
 		String msg=timestamp + "Peer " + to + " received the 'not interested' message from " + from + ".";
 		writeToFile(msg);
 	}
