@@ -261,7 +261,7 @@ class ConnectionModel {
 		return peerProcess.hasFile();
 	}
 
-	public synchronized void set() {
+	public synchronized void setConnection() {
 		connectionController.addConnection(this);
 	}
 
