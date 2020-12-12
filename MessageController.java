@@ -41,8 +41,8 @@ public class MessageController {
 			MessageModel bf = MessageModel.getInstance();
 			return bf.getMessageLength();
 		case PIECE:
-			System.out.println("Shared file" + fHandler.getFileChunkByIndex(pieceIndex) + " asking for piece " + pieceIndex);
-			int payloadLength = 5 + FileHandler.getInstance().getFileChunkByIndex(pieceIndex).length;
+			System.out.println("Shared file" + fHandler.readPieceOfFile(pieceIndex) + " asking for piece " + pieceIndex);
+			int payloadLength = 5 + FileHandler.getInstance().readPieceOfFile(pieceIndex).length;
 			return payloadLength;
 		case HANDSHAKE:
 			
@@ -113,7 +113,7 @@ public class MessageController {
 
 	private byte[] generatePiece(int fileChunkIndex){
 		byte[] response;
-		byte[] slice = fHandler.getFileChunkByIndex(fileChunkIndex);
+		byte[] slice = fHandler.readPieceOfFile(fileChunkIndex);
 		int slicelen = slice.length;
 		int totalLength = 5 + slicelen;
 		response = new byte[totalLength];
@@ -257,7 +257,7 @@ class MessageModel {
 		content = new byte[CommonProperties.numberOfChunks];
 		fileHandler = FileHandler.getInstance();
 		message[0] = type;
-		BitSet filePieces = fileHandler.getFilePieces();
+		BitSet filePieces = fileHandler.getPieces();
 		int i=0;
 		while (i < CommonProperties.numberOfChunks) {
 			if (filePieces.get(i)) {

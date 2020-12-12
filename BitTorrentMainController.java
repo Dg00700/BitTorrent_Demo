@@ -27,7 +27,7 @@ public class BitTorrentMainController {
 		CommonProperties.readConfigFile();
 		MessageModel.makeHandshake(peerId);
 		if (CommonProperties.getPeer(peerId).hasSharedFile) {
-			FileHandler.getInstance().splitFile();
+			FileHandler.getInstance().parseFile();
 		}
 		System.out.println("Peer Number:"+ peerId);
 		CommonProperties.PrintConfigDetails();

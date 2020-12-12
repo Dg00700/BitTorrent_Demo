@@ -81,7 +81,7 @@ public class ConnectionController {
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				if (CompleteFileNodes.size() == totalPeernum - 1 && fhandler.isCompleteFile()) {
+				if (CompleteFileNodes.size() == totalPeernum - 1 && fhandler.isFullFile()) {
 					System.exit(0);
 				}
 				if (pref_Neighbors_queue.size() > 0) {
