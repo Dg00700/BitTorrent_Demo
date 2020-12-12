@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 
 
-public class BitTorrentMainController {
+public class P2PInitializer {
 	public static String peerId;
 
 	public static void main(String args[]) throws IOException {
@@ -22,16 +22,16 @@ public class BitTorrentMainController {
 		else
 			peerId = "1001";
 		//init();
-		CommonProperties.readPeerInfo();
-		CommonProperties.loadDataFromConfig();
-		CommonProperties.readConfigFile();
-		MessageModel.makeHandshake(peerId);
-		if (CommonProperties.getPeer(peerId).hasSharedFile) {
-			FileHandler.getInstance().splitFile();
+		PeerProperties.readPeerInfo();
+		PeerProperties.loadDataFromConfig();
+		PeerProperties.readConfigFile();
+		MessageBody.makeHandshake(peerId);
+		if (PeerProperties.getPeer(peerId).hasSharedFile) {
+			FileHandler.getInstance().parseFile();
 		}
 		System.out.println("Peer Number:"+ peerId);
-		CommonProperties.PrintConfigDetails();
-		Node current = Node.getInstance();
+		PeerProperties.PrintConfigDetails();
+		PeerSetter current = PeerSetter.getInstance();
 		current.startClientModule();
 		current.startListeningServer();
 
@@ -39,7 +39,7 @@ public class BitTorrentMainController {
 
 }
 
-class NetworkModel {
+class PeerNetwork {
 
 	public int networkId;
 	public String peerId;
@@ -59,7 +59,7 @@ class NetworkModel {
 }
 
 
-class CommonProperties {
+class PeerProperties {
 
 	public static int numberOfChunks;
 	public static int nChunks;
@@ -70,31 +70,22 @@ class CommonProperties {
 	public static long fileSize;
 	public static int pieceSize;
 
-	private static HashMap<String, NetworkModel> peerList = new HashMap<>();
+	private static HashMap<String, PeerNetwork> peerList = new HashMap<>();
 
 
-	public static NetworkModel getPeer(String id) {
+	public static PeerNetwork getPeer(String id) {
 		return peerList.get(id);
 	}
 
-	public static HashMap<String, NetworkModel> getPeerList() {
+	public static HashMap<String, PeerNetwork> getPeerList() {
 		return peerList;
 	}
 
-	public static int getnumOfPeers() {
+	public static int numberOfPeers() {
 		return peerList.size();
 	}
 
-	public static boolean checkpeers(){
-		if(peerList.size()!=0)
-		return true;
-		else
-		return false;
-	}
-
-	
-
-	public static final String numprefNeighbor = "NumberOfPreferredNeighbors";
+	public static final String NUMBER_OF_PREFERRED_NEIGHBORS = "NumberOfPreferredNeighbors";
 	public static final String UNCHOKING_INTERVAL = "UnchokingInterval";
 	public static final String OPTIMISTIC_UNCHOKING_INTERVAL = "OptimisticUnchokingInterval";
 	public static final String FILENAME = "FileName";
@@ -107,7 +98,7 @@ class CommonProperties {
 	public static final String PEER_LOG_FILE_EXTENSION = ".log";
 	public static final String PEER_LOG_FILE_PATH = System.getProperty("user.dir") + File.separatorChar + "project/log_peer_";
 
-	
+
 
 
 	public static void calculateNumberOfPieces() {
@@ -127,10 +118,10 @@ class CommonProperties {
 		
 	
 		try {
-			Scanner sc = new Scanner(new File(CommonProperties.PEER_PROPERTIES_CONFIG_PATH));
+			Scanner sc = new Scanner(new File(PeerProperties.PEER_PROPERTIES_CONFIG_PATH));
 			while (sc.hasNextLine()) {
 				String str[] = sc.nextLine().split(" ");
-				NetworkModel network = new NetworkModel();
+				PeerNetwork network = new PeerNetwork();
 				network.networkId = num;
 				num += 1;
 				network.peerId= str[0];
@@ -186,25 +177,25 @@ class CommonProperties {
 
 		Properties properties = new Properties();
 		try {
-			FileInputStream in = new FileInputStream(CommonProperties.PROPERTIES_CONFIG_PATH);
+			FileInputStream in = new FileInputStream(PeerProperties.PROPERTIES_CONFIG_PATH);
 			properties.load(in);
 		}
 		catch (Exception ex) {
 			System.out.println("File not found : " + ex.getMessage());
 		}
 
-		CommonProperties.fileName = properties.get(CommonProperties.FILENAME).toString();
-		CommonProperties.fileSize = Long.parseLong(properties.get(CommonProperties.FILESIZE).toString());
-		CommonProperties.setNumberOfPreferredNeighbors(
-				Integer.parseInt(properties.get(CommonProperties.numprefNeighbor).toString()));
-		CommonProperties.optimisticUnchokingInterval = 
-				Integer.parseInt(properties.get(CommonProperties.OPTIMISTIC_UNCHOKING_INTERVAL).toString());
-		CommonProperties.pieceSize = Integer.parseInt(properties.getProperty(CommonProperties.PIECESIZE).toString());
-		CommonProperties.unchokingInterval = 
-				Integer.parseInt(properties.getProperty(CommonProperties.UNCHOKING_INTERVAL).toString());
-		CommonProperties.calculateNumberOfPieces();
-		System.out.println(CommonProperties.PROPERTIES_FILE_PATH);
-		System.out.println(CommonProperties.PROPERTIES_FILE_PATH + CommonProperties.fileName);
+		PeerProperties.fileName = properties.get(PeerProperties.FILENAME).toString();
+		PeerProperties.fileSize = Long.parseLong(properties.get(PeerProperties.FILESIZE).toString());
+		PeerProperties.setNumberOfPreferredNeighbors(
+				Integer.parseInt(properties.get(PeerProperties.NUMBER_OF_PREFERRED_NEIGHBORS).toString()));
+				PeerProperties.optimisticUnchokingInterval = 
+				Integer.parseInt(properties.get(PeerProperties.OPTIMISTIC_UNCHOKING_INTERVAL).toString());
+				PeerProperties.pieceSize = Integer.parseInt(properties.getProperty(PeerProperties.PIECESIZE).toString());
+				PeerProperties.unchokingInterval = 
+				Integer.parseInt(properties.getProperty(PeerProperties.UNCHOKING_INTERVAL).toString());
+				PeerProperties.calculateNumberOfPieces();
+		System.out.println(PeerProperties.PROPERTIES_FILE_PATH);
+		System.out.println(PeerProperties.PROPERTIES_FILE_PATH + PeerProperties.fileName);
 
 	}
 
@@ -212,34 +203,34 @@ class CommonProperties {
 	public static void readConfigFile(){
 		try{
 			
-			BufferedReader reader = new BufferedReader(new FileReader(CommonProperties.PROPERTIES_CONFIG_PATH));
+			BufferedReader reader = new BufferedReader(new FileReader(PeerProperties.PROPERTIES_CONFIG_PATH));
 
             String str = reader.readLine();
 
             String[] args = str.split("\\s+");
 			//int preferredNeighNum = Integer.parseInt(args[1]);
-			CommonProperties.numberOfPreferredNeighbors = Integer.parseInt(args[1]);
+			PeerProperties.numberOfPreferredNeighbors = Integer.parseInt(args[1]);
 			
 
             str = reader.readLine();
             args = str.split("\\s+");
-            CommonProperties.unchokingInterval = Integer.parseInt(args[1]);
+            PeerProperties.unchokingInterval = Integer.parseInt(args[1]);
 
             str = reader.readLine();
             args = str.split("\\s+");
-            CommonProperties.optimisticUnchokingInterval = Integer.parseInt(args[1]);
+            PeerProperties.optimisticUnchokingInterval = Integer.parseInt(args[1]);
 
             str = reader.readLine();
             args = str.split("\\s+");
-            CommonProperties.fileName = args[1];
+            PeerProperties.fileName = args[1];
 
             str = reader.readLine();
             args = str.split("\\s+");
-            CommonProperties.fileSize = Integer.parseInt(args[1]);
+            PeerProperties.fileSize = Integer.parseInt(args[1]);
 
             str = reader.readLine();
             args = str.split("\\s+");
-            CommonProperties.pieceSize = Integer.parseInt(args[1]);
+            PeerProperties.pieceSize = Integer.parseInt(args[1]);
 
             reader.close();
             
@@ -253,25 +244,25 @@ class CommonProperties {
 
 }
 
-class Node {
+class PeerSetter {
 	public static boolean didEveryoneReceiveTheFile = false;
-	private static Node current = new Node();
-	private NetworkModel networkModel;
-	ConnectionController connectionController;
+	private static PeerSetter current = new PeerSetter();
+	private PeerNetwork peerNetwork;
+	ConnectionHandler connectionHandler;
 
-	public Node() {
-		networkModel = CommonProperties.getPeer(BitTorrentMainController.peerId);
-		connectionController = ConnectionController.getInstance();
+	public PeerSetter() {
+		peerNetwork = PeerProperties.getPeer(P2PInitializer.peerId);
+		connectionHandler = ConnectionHandler.getInstance();
 	}
 
 	public void startListeningServer()  {
 
 		ServerSocket socket = null;
 		try {
-			socket = new ServerSocket(networkModel.port);
+			socket = new ServerSocket(peerNetwork.port);
 			while (!didEveryoneReceiveTheFile) {
 				Socket peerSocket = socket.accept();
-				connectionController.initiateConnection(peerSocket);
+				connectionHandler.initiateConnection(peerSocket);
 			}
 		}
 		catch (Exception e) {
@@ -289,11 +280,11 @@ class Node {
 	}
 
 	public void startClientModule() {
-		HashMap<String, NetworkModel> map = CommonProperties.getPeerList();
-		int myNumber = networkModel.networkId;
+		HashMap<String, PeerNetwork> map = PeerProperties.getPeerList();
+		int myNumber = peerNetwork.networkId;
 		//System.out.println("HIIIII"+myNumber);
 		for (String peerId : map.keySet()) {
-			NetworkModel peerInfo = map.get(peerId);
+			PeerNetwork peerInfo = map.get(peerId);
 			if (peerInfo.networkId < myNumber) {
 				new Thread() {
 					@Override
@@ -303,7 +294,7 @@ class Node {
 						String peerHost = peerInfo.hostName;
 						try {
 							Socket clientSocket = new Socket(peerHost, peerPort);
-							connectionController.startPeerConnection(clientSocket, peerInfo.getPeerId());
+							connectionHandler.startPeerConnection(clientSocket, peerInfo.getPeerId());
 							Thread.sleep(300);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -323,13 +314,13 @@ class Node {
 		}
 	}
 
-	public static Node getInstance() {
+	public static PeerSetter getInstance() {
 		return current;
 	}
 
 
-	public NetworkModel getNetwork() {
-		return networkModel;
+	public PeerNetwork getNetwork() {
+		return peerNetwork;
 	}
 
 	public void close(){

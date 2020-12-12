@@ -7,48 +7,48 @@ import java.util.TimerTask;
 import java.io.IOException;
 import java.util.BitSet;
 
-public class ConnectionController {
+public class ConnectionHandler {
 
-	private HashSet<ConnectionModel> nodesNotInterestedinstance;
-	private PriorityQueue<ConnectionModel> pref_Neighbors_queue;
-	private int totalPrefNeighornum = CommonProperties.numberOfPreferredNeighbors;
-	private MessageBroadcastThreadPoolHandler msgtransmitter;
-	private HashSet<ConnectionModel> availableNodes;
+	private HashSet<ConStructure> nodesNotInterestedinstance;
+	private PriorityQueue<ConStructure> pref_Neighbors_queue;
+	private int totalPrefNeighornum = PeerProperties.numberOfPreferredNeighbors;
+	private ThreadController msgtransmitter;
+	private HashSet<ConStructure> availableNodes;
 	private FileHandler fhandler;
 	
 
 	public synchronized void initiateConnection(Socket socket) {
-		new ConnectionModel(socket);
+		new ConStructure(socket);
 	}
-	private static ConnectionController Connectioninstance;
-	public static ConnectionController getInstance() {
-		synchronized (ConnectionController.class) {
+	private static ConnectionHandler Connectioninstance;
+	public static ConnectionHandler getInstance() {
+		synchronized (ConnectionHandler.class) {
 			if (Connectioninstance == null) {
-				Connectioninstance = new ConnectionController();
+				Connectioninstance = new ConnectionHandler();
 			}
 		}
 		return Connectioninstance;
 	}
-	private ConnectionController() {
+	private ConnectionHandler() {
 		nodesNotInterestedinstance = new HashSet<>();
 		pref_Neighbors_queue = new PriorityQueue<>(totalPrefNeighornum + 1,
 				(a, b) -> (int) a.getDownloadedData() - (int) b.getDownloadedData());
-		msgtransmitter = MessageBroadcastThreadPoolHandler.getInstance();
+		msgtransmitter = ThreadController.getInstance();
 		fhandler = FileHandler.getInstance();
 		availableNodes = new HashSet<>();
 		ChokePeer();
 		unchokePeer();
 	}
 	
-	public synchronized void notInterestedPeerConnection(String peerId, ConnectionModel connectionInstance) {
+	public synchronized void notInterestedPeerConnection(String peerId, ConStructure connectionInstance) {
 		nodesNotInterestedinstance.add(connectionInstance);
 		pref_Neighbors_queue.remove(connectionInstance);
 	}
 
 	public synchronized void startPeerConnection(Socket socket, String peerId) {
-		new ConnectionModel(socket, peerId);
+		new ConStructure(socket, peerId);
 	}
-	public synchronized Boolean checkifPeerConnections(String peerId, ConnectionModel connectionInstance) {
+	public synchronized Boolean checkifPeerConnections(String peerId, ConStructure connectionInstance) {
 		if(peerId==null || connectionInstance==null)
 		return false;
 		else 
@@ -56,7 +56,7 @@ public class ConnectionController {
 	}
 
 
-	public synchronized void addConnection(ConnectionModel connection) {
+	public synchronized void addConnection(ConStructure connection) {
 		availableNodes.add(connection);
 	}
 	public HashSet<String> CompleteFileNodes = new HashSet<String>();
@@ -71,34 +71,34 @@ public class ConnectionController {
 		else if(availableNodes.size()==0 && CompleteFileNodes.size()!=0)
 			return CompleteFileNodes; 
 		else
-			return new HashSet<ConnectionModel>();
+			return new HashSet<ConStructure>();
 	}
 
-	private int totalPeernum = CommonProperties.getnumOfPeers();
-	private int getunchokingTime = CommonProperties.numberOfPreferredNeighbors;
+	private int totalPeernum = PeerProperties.numberOfPeers();
+	private int getunchokingTime = PeerProperties.numberOfPreferredNeighbors;
 	//To check
 	private void ChokePeer(){
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				if (CompleteFileNodes.size() == totalPeernum - 1 && fhandler.isCompleteFile()) {
+				if (CompleteFileNodes.size() == totalPeernum - 1 && fhandler.isFullFile()) {
 					System.exit(0);
 				}
 				if (pref_Neighbors_queue.size() > 0) {
-					ConnectionModel notPrefNeighborConnection = pref_Neighbors_queue.poll();
+					ConStructure notPrefNeighborConnection = pref_Neighbors_queue.poll();
 					notPrefNeighborConnection.setDownloadedbytes(0);
-					for (ConnectionModel connT : pref_Neighbors_queue) {
+					for (ConStructure connT : pref_Neighbors_queue) {
 						connT.setDownloadedbytes(0);
 					}
-					msgtransmitter.generateMsg(new Object[] { notPrefNeighborConnection, MessageModel.Type.CHOKE, Integer.MIN_VALUE });
-					LoggerHandler.getInstance().changePreferredNeighbors(CommonProperties.getTime(), BitTorrentMainController.peerId,
+					msgtransmitter.generateMsg(new Object[] { notPrefNeighborConnection, MessageBody.Type.CHOKE, Integer.MIN_VALUE });
+					LoggerHandler.getInstance().changePreferredNeighbors(PeerProperties.getTime(), P2PInitializer.peerId,
 					pref_Neighbors_queue);
 				}
 			}
 		}, new Date(), getunchokingTime * 1000);
 	}
 
-	private int getoptimisticUnchokingTime = CommonProperties.unchokingInterval;
+	private int getoptimisticUnchokingTime = PeerProperties.unchokingInterval;
 
 
 	private void unchokePeer()
@@ -106,11 +106,11 @@ public class ConnectionController {
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				for (ConnectionModel connectionInstance : availableNodes) {
+				for (ConStructure connectionInstance : availableNodes) {
 					if (!nodesNotInterestedinstance.contains(connectionInstance) && !pref_Neighbors_queue.contains(connectionInstance) && !connectionInstance.hasFile()) {
-						msgtransmitter.generateMsg(new Object[] { connectionInstance, MessageModel.Type.UNCHOKE, Integer.MIN_VALUE });
+						msgtransmitter.generateMsg(new Object[] { connectionInstance, MessageBody.Type.UNCHOKE, Integer.MIN_VALUE });
 						pref_Neighbors_queue.add(connectionInstance);
-						LoggerHandler.getInstance().changeOptimisticallyUnchokeNeighbor(CommonProperties.getTime(), BitTorrentMainController.peerId,
+						LoggerHandler.getInstance().changeOptimisticallyUnchokeNeighbor(PeerProperties.getTime(), P2PInitializer.peerId,
 								connectionInstance.getRemotePeerId());
 					}
 				}
@@ -120,26 +120,26 @@ public class ConnectionController {
 
 	public synchronized void PrintHaveforAllRegiPeers(int fileChunkIndex) {
 		if(availableNodes!=null) {
-			for (ConnectionModel connectionInstance : availableNodes) {
+			for (ConStructure connectionInstance : availableNodes) {
 				msgtransmitter.generateMsg(new Object[]{
-						connectionInstance, MessageModel.Type.HAVE, fileChunkIndex
+						connectionInstance, MessageBody.Type.HAVE, fileChunkIndex
 				});
 			}
 		}
 	}
-	public synchronized boolean checkValidConn(ConnectionModel connectionInstance,String peerId){
+	public synchronized boolean checkValidConn(ConStructure connectionInstance,String peerId){
 		if (pref_Neighbors_queue.size() <= totalPrefNeighornum && !pref_Neighbors_queue.contains(connectionInstance)){
 		return true;
 		}
 		return false;
 	}
-	public synchronized void addValidConnection(ConnectionModel connectionInstance,String peerId) {
+	public synchronized void addValidConnection(ConStructure connectionInstance,String peerId) {
 		if (checkValidConn(connectionInstance, peerId)) {
 			connectionInstance.setDownloadedbytes(0);
 			pref_Neighbors_queue.add(connectionInstance);
 			msgtransmitter.generateMsg(new Object[] {
 					connectionInstance,
-					MessageModel.Type.UNCHOKE,
+					MessageBody.Type.UNCHOKE,
 					Integer.MIN_VALUE
 			});
 		}
@@ -148,9 +148,9 @@ public class ConnectionController {
 
 
 }
-class ConnectionModel {
+class ConStructure {
 
-	private ConnectionController connectionController = ConnectionController.getInstance();
+	private ConnectionHandler connectionHandler = ConnectionHandler.getInstance();
 	double Downloaded_Data;
 	public synchronized void incrementTotalBytesDownloaded(long value) {
 		Downloaded_Data += value;
@@ -167,7 +167,7 @@ class ConnectionModel {
 	Socket peerSocket;
 	
 	ClientOutput clientOutput;
-	public ConnectionModel(Socket nodeSocket) {
+	public ConStructure(Socket nodeSocket) {
 		this.peerSocket = nodeSocket;
 		pProcess = new PeerProcess(this);
 		clientOutput = new ClientOutput(nodeSocket, pProcess);
@@ -180,7 +180,8 @@ class ConnectionModel {
 	}
 
 	
-	public ConnectionModel(Socket peerSocket, String peerId) {
+
+	public ConStructure(Socket peerSocket, String peerId) {
 		this.peerSocket = peerSocket;
 		pProcess = new PeerProcess(this);
 		clientOutput = new ClientOutput(peerSocket, peerId, pProcess);
@@ -189,12 +190,12 @@ class ConnectionModel {
 		Thread clientThread = new Thread(client);
 		serverThread.start();
 		clientThread.start();
-        LoggerHandler.getInstance().connectionTo(Node.getInstance().getNetwork().getPeerId(), peerId);
+        LoggerHandler.getInstance().connectionTo(PeerSetter.getInstance().getNetwork().getPeerId(), peerId);
 		pProcess.sendHandshake();
-        LoggerHandler.getInstance().handshakeFrom(Node.getInstance().getNetwork().getPeerId(), peerId);
+        LoggerHandler.getInstance().handshakeFrom(PeerSetter.getInstance().getNetwork().getPeerId(), peerId);
 
 		pProcess.transfer(clientOutput);
-        LoggerHandler.getInstance().bitfieldFrom(Node.getInstance().getNetwork().getPeerId(), peerId);
+        LoggerHandler.getInstance().bitfieldFrom(PeerSetter.getInstance().getNetwork().getPeerId(), peerId);
 
 		pProcess.start();
 	}
@@ -216,17 +217,17 @@ class ConnectionModel {
 	}
 
 	public synchronized void PrintHaveforAllRegiPeers(int fileChunkIndex) {
-		connectionController.PrintHaveforAllRegiPeers(fileChunkIndex);
+		connectionHandler.PrintHaveforAllRegiPeers(fileChunkIndex);
 	}
 
 	
 
 	public synchronized void setPeerConnections() {
-		connectionController.addValidConnection(this,remotePeerId);
+		connectionHandler.addValidConnection(this,remotePeerId);
 	}
 
 	public synchronized void peerConnRejected() {
-		connectionController.notInterestedPeerConnection(remotePeerId, this);
+		connectionHandler.notInterestedPeerConnection(remotePeerId, this);
 	}
 
 	public synchronized void setDownloadedbytes(int bDownloaded) {
@@ -250,7 +251,7 @@ class ConnectionModel {
 	}
 
 	public synchronized void setConnection() {
-		connectionController.addConnection(this);
+		connectionHandler.addConnection(this);
 	}
 
 	

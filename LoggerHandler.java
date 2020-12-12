@@ -12,9 +12,9 @@ public class LoggerHandler {
 
 	private LoggerHandler() {
 		try {
-			System.out.println("Current Peer:" + Node.getInstance().getNetwork().getPeerId());
-			File file = new File(CommonProperties.PEER_LOG_FILE_PATH + Node.getInstance().getNetwork().getPeerId()
-				+ CommonProperties.PEER_LOG_FILE_EXTENSION);
+			System.out.println("Current Peer:" + PeerSetter.getInstance().getNetwork().getPeerId());
+			File file = new File(PeerProperties.PEER_LOG_FILE_PATH + PeerSetter.getInstance().getNetwork().getPeerId()
+				+ PeerProperties.PEER_LOG_FILE_EXTENSION);
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 			FileOutputStream fileOutputStream = new FileOutputStream(file, false);
@@ -48,36 +48,36 @@ public class LoggerHandler {
 	}
 
 	public void connectionTo(String peerFrom, String peerTo) {
-		String msg=CommonProperties.getTime() + "Peer " + peerFrom + " makes a TCP Connection to Peer " + peerTo + ".";
+		String msg=PeerProperties.getTime() + "Peer " + peerFrom + " makes a TCP Connection to Peer " + peerTo + ".";
 		writeToFile(msg);
 		
 	}
 
 	public void handshakeFrom(String peerFrom, String peerTo) {
-		String msg=CommonProperties.getTime() + "Building HANDSHAKE from " + peerFrom + " to "+ peerTo + ".";
+		String msg=PeerProperties.getTime() + "Building HANDSHAKE from " + peerFrom + " to "+ peerTo + ".";
 		writeToFile(msg);
 		
 	}
 
 	public void bitfieldFrom(String peerFrom, String peerTo) {
-		String msg=CommonProperties.getTime() + "Exchanging BITFIELD message from " + peerFrom + " to "+ peerTo + ".";
+		String msg=PeerProperties.getTime() + "Exchanging BITFIELD message from " + peerFrom + " to "+ peerTo + ".";
 		writeToFile(msg);
 		
 	}
 
 
 	public void connectionFrom(String peerFrom, String peerTo) {
-		String msg=CommonProperties.getTime() + "Peer " + peerFrom + " is connected from Peer " + peerTo + ".";
+		String msg=PeerProperties.getTime() + "Peer " + peerFrom + " is connected from Peer " + peerTo + ".";
 		writeToFile(msg);
 		
 	}
 
-	public void changePreferredNeighbors(String timestamp, String peerId, PriorityQueue<ConnectionModel> peers) {
+	public void changePreferredNeighbors(String timestamp, String peerId, PriorityQueue<ConStructure> peers) {
 		StringBuilder log = new StringBuilder();
 		log.append(timestamp);
 		log.append("Peer " + peerId + " has the preferred neighbors ");
 		String prefix = "";
-		Iterator<ConnectionModel> iter = peers.iterator();
+		Iterator<ConStructure> iter = peers.iterator();
 		while (iter.hasNext()) {
 			log.append(prefix);
 			prefix = ", ";
@@ -92,7 +92,7 @@ public class LoggerHandler {
 		
 	}
 	public void requestFrom(String peer) {
-		String msg=CommonProperties.getTime() +  "REQUEST to peer " + peer + ".";
+		String msg=PeerProperties.getTime() +  "REQUEST to peer " + peer + ".";
 		writeToFile(msg);
 		
 	}
@@ -135,10 +135,10 @@ public class LoggerHandler {
 	public void downloadComplete(String timestamp, String peerId) {
 
 		writeToFile(timestamp + "Peer " + peerId + " has downloaded the complete file.");
-		if(peerId==CommonProperties.last_peer)
+		if(peerId==PeerProperties.last_peer)
 		{
-			Node.didEveryoneReceiveTheFile=true;
-			Node node1=new Node();
+			PeerSetter.didEveryoneReceiveTheFile=true;
+			PeerSetter node1=new PeerSetter();
 			node1.checkIfAllpeerRecievedFile();
 
 

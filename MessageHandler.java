@@ -6,24 +6,24 @@ import java.util.Arrays;
 import java.util.BitSet;
 
 
-public class MessageController {
-	private static MessageController mController;
+public class MessageHandler {
+	private static MessageHandler mController;
 	private FileHandler fHandler;
 
-	private MessageController() {
+	private MessageHandler() {
 		fHandler = FileHandler.getInstance();
 	}
 	
-	public static MessageController getInstance() {
-		synchronized (MessageController.class) {
+	public static MessageHandler getInstance() {
+		synchronized (MessageHandler.class) {
 			if (mController == null) {
-				mController = new MessageController();
+				mController = new MessageHandler();
 			}
 		}
 		return mController;
 	}
 
-	public synchronized int findMessageLength(MessageModel.Type type, int pieceIndex) {
+	public synchronized int findMessageLength(MessageBody.Type type, int pieceIndex) {
 
 
 		switch (type) {
@@ -38,11 +38,11 @@ public class MessageController {
 		case HAVE:
 			return 5;
 		case BITFIELD:
-			MessageModel bf = MessageModel.getInstance();
+		MessageBody bf = MessageBody.getInstance();
 			return bf.getMessageLength();
 		case PIECE:
-			System.out.println("Shared file" + fHandler.getFileChunkByIndex(pieceIndex) + " asking for piece " + pieceIndex);
-			int payloadLength = 5 + FileHandler.getInstance().getFileChunkByIndex(pieceIndex).length;
+			System.out.println("Shared file" + fHandler.readPieceOfFile(pieceIndex) + " asking for piece " + pieceIndex);
+			int payloadLength = 5 + FileHandler.getInstance().readPieceOfFile(pieceIndex).length;
 			return payloadLength;
 		case HANDSHAKE:
 			
@@ -62,40 +62,40 @@ public class MessageController {
 		}
 	}
 
-	public synchronized byte[] setPayload(MessageModel.Type messageType, int pieceIndex) {
+	public synchronized byte[] setPayload(MessageBody.Type messageType, int pieceIndex) {
 		byte[] response = new byte[5];
-		if(messageType==MessageModel.Type.CHOKE){
+		if(messageType==MessageBody.Type.CHOKE){
 			return new byte[] { 0 };
 		}
-		if(messageType==MessageModel.Type.UNCHOKE){
+		if(messageType==MessageBody.Type.UNCHOKE){
 			return new byte[] { 1 };
 		}
-		if(messageType==MessageModel.Type.INTERESTED){
+		if(messageType==MessageBody.Type.INTERESTED){
 			return new byte[] { 2 };
 		}
-		if(messageType==MessageModel.Type.NOTINTERESTED){
+		if(messageType==MessageBody.Type.NOTINTERESTED){
 			return new byte[] { 3 };
 		}
-		if(messageType==MessageModel.Type.HAVE){
+		if(messageType==MessageBody.Type.HAVE){
 			response[0] = 4;
 			byte[] havePieceIndex = ByteBuffer.allocate(4).putInt(pieceIndex).array();
 			System.arraycopy(havePieceIndex, 0, response, 1, 4);
 
 		}
-		else if(messageType==MessageModel.Type.BITFIELD){
-			MessageModel bitfield = MessageModel.getInstance();
+		else if(messageType==MessageBody.Type.BITFIELD){
+			MessageBody bitfield = MessageBody.getInstance();
 			response = bitfield.getMessageData();
 		}
-		else if(messageType==MessageModel.Type.REQUEST){
+		else if(messageType==MessageBody.Type.REQUEST){
 			response[0] = 6;
 			byte[] index = ByteBuffer.allocate(4).putInt(pieceIndex).array();
 			System.arraycopy(index, 0, response, 1, 4);
 		}
-		else if(messageType==MessageModel.Type.PIECE){
+		else if(messageType==MessageBody.Type.PIECE){
 			response = generatePiece(pieceIndex);
 		}
-		if(messageType==MessageModel.Type.HANDSHAKE){
-			return MessageModel.makeMessage();
+		if(messageType==MessageBody.Type.HANDSHAKE){
+			return MessageBody.makeMessage();
 		}
 		return response;
 	}
@@ -113,7 +113,7 @@ public class MessageController {
 
 	private byte[] generatePiece(int fileChunkIndex){
 		byte[] response;
-		byte[] slice = fHandler.getFileChunkByIndex(fileChunkIndex);
+		byte[] slice = fHandler.readPieceOfFile(fileChunkIndex);
 		int slicelen = slice.length;
 		int totalLength = 5 + slicelen;
 		response = new byte[totalLength];
@@ -124,67 +124,67 @@ public class MessageController {
 		return response;
 	}
 
-	public synchronized MessageModel.Type getType(byte type) {
+	public synchronized MessageBody.Type getType(byte type) {
 
-		MessageModel.Type response= null;
+		MessageBody.Type response= null;
 
 		if (type==0)
 		{
-			response = MessageModel.Type.CHOKE;
+			response = MessageBody.Type.CHOKE;
 		}
 		else if(type==1)
 		{
-			response = MessageModel.Type.UNCHOKE;
+			response = MessageBody.Type.UNCHOKE;
 		}
 		else if(type==2)
 		{
-			response = MessageModel.Type.INTERESTED;
+			response = MessageBody.Type.INTERESTED;
 		}
 		else if(type==3)
 		{
-			response = MessageModel.Type.NOTINTERESTED;
+			response = MessageBody.Type.NOTINTERESTED;
 		}
 		else if(type==4)
 		{
-			response = MessageModel.Type.HAVE;
+			response = MessageBody.Type.HAVE;
 		}
 		else if(type==5)
 		{
-			response = MessageModel.Type.BITFIELD;
+			response = MessageBody.Type.BITFIELD;
 		}
 		else if(type==6)
 		{
-			response = MessageModel.Type.REQUEST;
+			response = MessageBody.Type.REQUEST;
 		}
 		else
 		{
-			response=MessageModel.Type.PIECE;
+			response=MessageBody.Type.PIECE;
 		}
 		
 		return response;
 	}
 }
 
-class MessageBroadcastThreadPoolHandler extends Thread {
+class ThreadController extends Thread {
 	private BlockingQueue<Object[]> q;
-	private MessageController messageController;
-	private ConnectionModel connectionModel;
-	private MessageModel.Type messageType;
+	private MessageHandler messageHandler;
+	private ConStructure conStructure;
+	private MessageBody.Type messageType;
 	private int pieceIndex;
-	private static MessageBroadcastThreadPoolHandler instance;
+	private static ThreadController instance;
 
-	private MessageBroadcastThreadPoolHandler() {
+	private ThreadController() {
 		q = new LinkedBlockingQueue<>();
-		messageController = MessageController.getInstance();
-		connectionModel = null;
+		messageHandler = MessageHandler.getInstance();
+		conStructure = null;
 		messageType = null;
 		pieceIndex = Integer.MIN_VALUE;
 	}
 
-	public static MessageBroadcastThreadPoolHandler getInstance() {
-		synchronized (MessageBroadcastThreadPoolHandler.class) {
+	public static ThreadController getInstance() {
+		synchronized (ThreadController.class) {
 			if (instance == null) {
-				instance = new MessageBroadcastThreadPoolHandler();
+				instance = new ThreadController();
 				instance.start();
 			}
 		}
@@ -205,15 +205,15 @@ class MessageBroadcastThreadPoolHandler extends Thread {
 	public void run() {
 		while (true) {
 			Object[] data = retrieveMessage();
-			connectionModel = (ConnectionModel) data[0];
-			messageType = (MessageModel.Type) data[1];
+			conStructure = (ConStructure) data[0];
+			messageType = (MessageBody.Type) data[1];
 			pieceIndex = (int) data[2];
 			System.out.println(
-					"Broadcaster: Building " + messageType + pieceIndex + " to peer " + connectionModel.getRemotePeerId());
-			int messageLength = messageController.findMessageLength(messageType, pieceIndex);
-			byte[] payload = messageController.setPayload(messageType, pieceIndex);
-			connectionModel.sendMessage(messageLength, payload);
-			System.out.println("Broadcaster: Sending " + messageType + " to peer " + connectionModel.getRemotePeerId());
+					"Broadcaster: Building " + messageType + pieceIndex + " to peer " + conStructure.getRemotePeerId());
+			int messageLength = messageHandler.findMessageLength(messageType, pieceIndex);
+			byte[] payload = messageHandler.setPayload(messageType, pieceIndex);
+			conStructure.sendMessage(messageLength, payload);
+			System.out.println("Broadcaster: Sending " + messageType + " to peer " + conStructure.getRemotePeerId());
 
 		}
 	}
@@ -232,7 +232,7 @@ class MessageBroadcastThreadPoolHandler extends Thread {
 }
 
 
-class MessageModel {
+class MessageBody {
 
 	protected ByteBuffer bytebuffer;
 	protected byte type;
@@ -240,26 +240,26 @@ class MessageModel {
 	protected byte[] messageLength = new byte[4];
 	protected byte[] message;
 	private FileHandler fileHandler;
-	private static MessageModel bitfield;
+	private static MessageBody bitfield;
 
 
 	public static enum Type {
 		CHOKE, UNCHOKE, INTERESTED, NOTINTERESTED, HAVE, BITFIELD, REQUEST, PIECE, HANDSHAKE;
 	}
 
-	private MessageModel(){
+	private MessageBody(){
 		init();
 	}
 
 	private void init() {
 		type = 5;
-		message = new byte[CommonProperties.numberOfChunks + 1];
-		content = new byte[CommonProperties.numberOfChunks];
+		message = new byte[PeerProperties.numberOfChunks + 1];
+		content = new byte[PeerProperties.numberOfChunks];
 		fileHandler = FileHandler.getInstance();
 		message[0] = type;
-		BitSet filePieces = fileHandler.getFilePieces();
+		BitSet filePieces = fileHandler.getPieces();
 		int i=0;
-		while (i < CommonProperties.numberOfChunks) {
+		while (i < PeerProperties.numberOfChunks) {
 			if (filePieces.get(i)) {
 				message[i + 1] = 1;
 			}
@@ -267,10 +267,10 @@ class MessageModel {
 		}
 	}
 
-	public static MessageModel getInstance() {
-		synchronized (MessageModel.class) {
+	public static MessageBody getInstance() {
+		synchronized (MessageBody.class) {
 			if (bitfield == null) {
-				bitfield = new MessageModel();
+				bitfield = new MessageBody();
 			}
 		}
 		return bitfield;
